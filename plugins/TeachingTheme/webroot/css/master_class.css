@@ -1,0 +1,402 @@
+
+
+.pad-t-20{
+    padding-top: 20px;
+}
+.master_class_tab > li > a {
+    margin-right: 2px;
+    line-height: 1.42857143;
+    border: none;
+    border-radius: 7px 7px 0 0;
+    padding: 10px 30px;
+    color: #000000;
+    font-weight: 500;
+}
+.master_class_tab > li.active > a, .master_class_tab > li.active > a:hover, .master_class_tab > li.active > a:focus {
+    color: #fff;
+    cursor: default;
+    background: linear-gradient(45deg, #ed4429, #e80a3a);
+    border: none;
+    border-bottom-color: transparent;
+}
+.master_class_modal h3{
+    color: #32ba7c;
+    font-weight: 400;
+    margin-top: 0px;
+}
+.mcm-date{
+    display: inline-block;
+    padding: 5px 25px;
+    border: 4px solid #32ba7c;
+    margin-top: 10px;
+    border-radius: 100px;
+}
+.mcm-date h5{
+    margin-bottom: 10px
+}
+.form-control-tb{
+    box-shadow: none;
+    resize: none;
+    border-radius: 0px;
+}
+.form-control-tb:focus{
+    outline: none;
+    box-shadow: none;
+    border-color: #444
+}
+.master_class_header{
+    background: url(../img/phase-3/master-bg.png) no-repeat bottom center, linear-gradient(45deg, #cc002e, #fc5637);
+    background-size: 54%, auto;
+    padding-top: 100px
+}
+.master-detail-top-text{
+    text-align: center;
+}
+.master-detail-top-text h5{
+    color: #fff;
+    font-size: 19px;
+    font-weight: 300;
+    line-height: 1
+}
+.master-detail-top-text h5 span{
+    background: #FFC107;
+    padding: 2px 10px;
+    border-radius: 4px;
+    color: #000000;
+    font-size: 15px;
+    font-weight: 700
+}
+.master-detail-top-text h2{
+    color: #fff;
+    margin-top: 0
+}
+.master-detail-top-box{
+    background: #fff;
+    min-height: 300px;
+    margin-bottom: -50px;
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 25%);
+    margin-top: 80px;
+    text-align: center;
+}
+.master-detail-top-box-profile{
+    height: 140px !important;
+    width: 140px !important;
+    border-radius: 100px;
+    border: 5px solid #ffc107;
+    margin-top: -70px;
+    background: #fff;
+    padding: 5px;
+    box-shadow: 0px 0px 5px rgb(0 0 0 / 55%);
+    margin-bottom: 10px;
+    transition: 0.4s;
+    display: inline-block !important
+}
+.master-detail-top-box h5{
+    text-transform: uppercase;
+    font-weight: 300;
+    color: #df2232
+}
+.master-detail-top-box h3{
+    text-transform: uppercase;
+    color: #222;
+    margin-top: 0px;
+    font-weight: 700
+}
+.master-detail-top-box h3 span{
+    margin-top: 5px;
+    font-size: 14px;
+    color: #444;
+    display: block;
+}
+.master-detail-top-box:hover .master-detail-top-box-profile{
+    transform: rotate(360deg);
+    transition: 0.4s
+}
+.master-detail-top-box-bullets{
+    list-style: none;
+    border-top: 1px dashed #ddd;
+    margin-left: 0px;
+    padding-left: 0px;
+    text-align: left;
+    padding-top: 15px;
+    width: 80%;
+    margin-left: 10%; 
+}
+.master-detail-top-box-bullets li{
+    width: 50%;
+    float: left;
+    padding: 5px 5px 5px 30px;
+    background: url(../img/phase-3/tick-2.svg) no-repeat center left;
+    background-size: 22px;
+}
+.master-detail-top-box-bottom{
+    display: block;
+    position: relative;
+    clear: both;
+    background: linear-gradient(45deg, #3F51B5, #703c97);
+    margin-top: 20px;
+    padding: 15px;
+}
+.master-detail-top-box-bottom h3{
+    margin: 10px 0px;
+    color: #fff;
+    font-size: 18px;
+    text-align: left;
+}
+.master-detail-top-box-bottom a, .master-detail-top-box-bottom a:focus{
+    display: block;
+    background: linear-gradient(45deg, #ed4426, #f66a52);
+    color: #fff;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 50px;
+    box-shadow: 0px 0px 10px rgb(11 11 11 / 32%);
+    text-decoration: none;
+    font-weight: 400
+}
+.master-detail-top-box-bottom a:hover{
+    color: #fff;
+    box-shadow: none;
+}
+.master_class_body{
+    background: #eeeff3;
+    padding: 90px 0px 60px 0px;
+}
+.master-title-3{
+    text-transform: uppercase;
+    margin-bottom: 20px
+}
+.master-bullets-1{
+    list-style: none;
+}
+.master-bullets-1 li{
+    padding: 9px 5px 5px 35px;
+    background: url(../img/phase-3/tick.svg) no-repeat center left;
+    background-size: 20px;
+    color: #4c4d52;
+    font-weight: 500;
+    font-size: 15px;
+    width: 50%;
+    float: left;
+    display: block;
+}
+.master_class_bottom{
+    padding: 40px 0px;
+    background: #f8f8fb;
+}
+.master_class_testi{
+    padding: 40px 0px;
+}
+.master-testimonial-box{
+    background: #fff;
+    padding: 25px 0px !important;
+    box-shadow: 0px 0px 10px #ddd;
+    min-height: 200px
+}
+.master-testimonial-box img{
+    width: 80px;
+    height: 80px;
+    border-radius: 100px;
+    margin-bottom: 20px
+}
+.master-testimonial-box h3{
+    margin-top: 0px;
+    font-size: 20px
+}
+.master-testimonial-box h5{
+    margin-top: 0px;
+    font-size: 14px;
+    opacity: 0.7
+}
+.master-testimonial-box p{
+    opacity: 0.9
+}
+.master-counter{
+    background: rgba(0, 0, 0, 0.12);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+    margin-top: 20px
+}
+.master-counter h6{
+    margin-top: 0px;
+    font-size: 17px;
+    font-weight: 400
+}
+.master-counter h2{
+    font-size: 50px;
+    color: #FFC107;
+    margin-bottom: 0px
+}
+.master-l-btn, .master-l-btn:focus{
+    display: inline-block;
+    background: #ffc107;
+    color: #000000;
+    font-size: 26px;
+    padding: 10px 45px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    border: 2px solid #ddd;
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 27%);
+    text-decoration: none;
+    transition: 0.4s
+}
+.master-l-btn:hover{
+    color: #000000;
+    box-shadow: none;
+    opacity: 0.8;
+    transition: 0.4s
+}
+.master-confirm-box{
+    background-color: rgb(255 255 255);
+    padding: 30px !important;
+    border-radius: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 36%);;
+}
+.master-video-box{
+    background: #fff;
+    padding: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px
+}
+.master-course-details{
+    background: #ffc107;
+    padding: 50px 0px;
+}
+.master-course-details-titles{
+    text-align: center;
+    color: #fff
+}
+.master-course-details-titles h2{
+    margin: 0px;
+    font-weight: 900;
+    line-height: 1.3;
+    font-size: 35px
+}
+.master-course-details-titles h3{
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 5px 20px;
+    border-radius: 5px
+}
+.master-l-btn-orange, .master-l-btn-orange:focus{
+    display: inline-block;
+    background: #ed4426;
+    color: #ffffff;
+    font-size: 26px;
+    padding: 10px 45px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 27%);
+    text-decoration: none;
+    transition: 0.4s;
+    font-weight: 700;
+}
+.master-l-btn-orange:hover{
+    color: #fff;
+    box-shadow: none;
+    transition: 0.4s;
+    opacity: 0.8
+}
+.master_class_body-light{
+    padding: 30px 0px 70px 0px;
+    background: #eeeff3;
+}
+.master_class_body-white{
+    padding: 30px 0px;
+    background: #fff;
+}
+.master-offering-box{
+    text-align: center;
+    background: linear-gradient(45deg, #673AB7, #3F51B5);
+    padding: 30px 15px;
+    border-radius: 10px;
+    color: #fff;
+}
+.master-offering-box h3{
+    font-size: 26px;
+    font-weight: 400;
+    margin-bottom: 20px
+}
+.master-offering-box ul{
+    text-align: left;
+    margin-left: 30px
+}
+.master-offering-box ul li{
+    margin-top: 10px
+}
+.master-get-table{
+    margin-bottom: 30px;
+}
+.master-get-table table{
+    margin-top: 20px;
+    width: 100%;
+    font-size: 20px
+}
+.master-get-table table tr td:first-child{
+    width: 60px;
+}
+.master-get-table table tr td:first-child img{
+    width: 45px;
+}
+.master-get-table table tr td{
+    padding: 10px 0px;
+}
+.master-price-box{
+    background: #ffc107;
+    padding: 25px !important;
+    border-radius: 10px;
+    text-align: center;
+}
+.master-price-box h3{
+    margin-top: 0px;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 300
+}
+.master-price-box h3 span{
+    margin-left: 10px;
+    font-weight: 900
+}
+.master-price-box h4{
+    margin-top: 0px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px
+}
+.master-price-box h2{
+    font-weight: 900;
+    margin-top: 0px;
+    color: #000000
+}
+.master-price-box h2 span{
+    text-decoration: line-through;
+    font-weight: 400;
+    margin-right: 15px
+}
+.master-price-btn, .master-price-btn:focus{
+    display: inline-block;
+    background: linear-gradient(-45deg, #e8023d, #ed4b26);
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 100px;
+    font-weight: 300;
+    margin-top: 5px;
+    transition: 0.4s;
+    text-align: center;
+    width: 100%;
+    text-decoration: none;
+}
+.master-price-btn:hover{
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.8
+}

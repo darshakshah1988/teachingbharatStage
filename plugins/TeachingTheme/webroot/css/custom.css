@@ -1,0 +1,42 @@
+.smalldropify .dropify-wrapper .dropify-message span.file-icon {
+    font-size: 30px !important;
+}
+.smalldropify span.file-icon {
+    vertical-align: bottom !important;
+}
+.smalldropify .dropify-message p {
+    margin: 0px 0 0;
+    display: inline-block;
+    line-height: 30px;
+    font-size: 12px;
+}
+
+.jconfirm .jconfirm-box div.jconfirm-content-pane.no-scroll, .jconfirm .jconfirm-box div.jconfirm-content-pane .jconfirm-content{overflow-x: hidden !important;}
+.password-instrution{position:relative; top:-18px;}
+.cropping-top-sc{display: flex; align-items: center; justify-content: space-between; border: 1px solid #dfdfdf; margin-bottom: 20px; padding: 10px 10px;}
+
+.jconfirm-buttons .btn-block{
+	height: auto !important;
+	line-height: inherit !important;
+	text-decoration: none !important;
+	color: #ffffff !important;
+	width: auto;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.is-invalid{
+    border-color: #a94442;
+}
+.invalid-feedback{
+    color: #a94442;
+}
+
+@media only screen and (max-width:991px){
+    .cropping-top-sc{flex-direction: column;}
+    .cropping-top-sc label{margin-top: 10px;}
+}
+
+ul.searchbar{ margin: 0px; padding: 0px; }
+
+ul.searchbar li{ list-style: none; float: left; margin:0px; min-width: 50%; }

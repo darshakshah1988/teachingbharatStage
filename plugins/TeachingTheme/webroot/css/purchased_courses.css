@@ -1,0 +1,186 @@
+
+/* 16-1-2021 */
+.my-purchase-wrapper{
+    padding: 15px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+.mypruchase-title-1 h3{
+    margin: 0px;
+    font-size: 20px
+}
+.mypruchase-title-1 p{
+    opacity: 0.7;
+    margin-bottom: 0px
+}
+.mypruchase-title-1-buttons{
+    text-align: right;
+}
+.mypruchase-title-1-buttons a, .mypruchase-title-1-buttons a:focus{
+    display: inline-block;
+    background: #ed4426;
+    color: #fff;
+    padding: 10px 20px;
+    margin-right: 0px;
+    margin-left: 0px;
+    line-height: 1
+}
+.mypruchase-title-1-buttons a:hover{
+    border-radius: 100px;
+    transition: 0.4s
+}
+.mypruchase-box{
+    background: #fff;
+    padding: 25px 15px 15px 15px;
+    border-radius: 7px;
+    box-shadow: 0px 0px 7px #ddd;
+    margin-bottom: 30px;
+}
+.mypruchase-box h5{
+    position: absolute;
+    top: -10px;
+    right: 15px;
+    background: #8bc34a85;
+    color: #349638;
+    padding: 5px 10px;
+    border-radius: 0px 0px 5px 5px;
+}
+.inactive-purchase{
+    background: #ff000045 !important;
+    color: #e81515 !important;
+}
+.mypruchase-box h3{
+    margin-top: 10px;
+    font-size: 20px;
+    height: 55px
+}
+.mybtn-sm{
+    display: inline-block;
+    background: linear-gradient(-45deg, #e8023d, #ed4b26);
+    color: #fff;
+    border-radius: 100px;
+    padding: 10px 15px;
+    line-height: 1;
+    text-decoration: none;
+    transition: 0.4s
+}
+.mybtn-sm:hover{
+    color: #fff;
+    opacity: 0.7;
+    transition: 0.4s
+}
+.mypruchase-title-box{
+    background: #fff;
+    padding: 15px;
+    border-radius: 7px;
+    box-shadow: 0px 0px 7px #ddd;
+    margin-bottom: 30px
+}
+.schedule-course-header{
+    background: linear-gradient(90deg, #ed4b26, #e8023d);
+    padding: 50px 0px;
+    margin-top: 50px;
+}
+.schedule-course-header h2{
+    color: #fff;
+    font-size: 40px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+.schedule-course-header p{
+    color: #ffca07;
+}
+.schedule-course-header p i{
+    margin-right: 5px
+}
+.student-schedule-tab-bar{
+    background: #fff;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 5px 0px;
+}
+.student-schedule-tab-bar .nav-tabs{
+    border: none;
+}
+.student-schedule-tab-bar .nav-tabs > li > a{
+    margin-right: 2px;
+    border-radius: 0;
+    border: none;
+    color: #000000;
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: uppercase;
+    padding: 10px 30px;
+}
+.student-schedule-tab-bar .nav-tabs > li.active > a, .student-schedule-tab-bar .nav-tabs > li.active > a:hover, .student-schedule-tab-bar .nav-tabs > li.active > a:focus {
+    color: #fff !important;
+    cursor: default;
+    background-color: #ed4426;
+    border: none;
+}
+.pad20-0{
+    padding: 20px 0px
+}
+.pad-0-l-r{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.schedule-right-action, .schedule-right-action:focus{
+    display: inline-block;
+    float: right;
+    margin-left: 15px;
+    font-size: 12px;
+    color: #ed4426;
+    margin-top: 3px;
+}
+.schedule-right-action:hover{
+    text-decoration: none;
+    color: #222;
+}
+.schedule-right-action i{
+    margin-right: 3px
+}
+.mb-20{
+    margin-bottom: 20px !important
+}
+.schedule-session-message{
+    background: linear-gradient(90deg, #ed4b26, #e8023d);
+    color: #fff;
+    border-radius: 8px 8px 0px 0px;
+    padding: 15px 15px;
+}
+.schedule-session-message h3{
+    margin: 0px;
+    font-size: 19px;
+    font-weight: 400
+}
+.schedule-course-header-teacher{
+    background: #fff;
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px
+}
+.schedule-course-header-teacher img.schteacher{
+    width: 70px;
+    height: 70px;
+    border-radius: 100px;
+}
+.schedule-course-header-teacher h3{
+    margin: 0px 0px 10px 0px;
+    font-size: 15px
+}
+.schedule-course-header-teacher h4{
+    margin-bottom: 0px
+}
+.schedule-course-header-teacher p{
+    margin-bottom: 0px
+}
+.schedule-right-section ul{
+    list-style: none;
+}
+.schedule-right-section ul li{
+    background: url(../img/phase-3/tick.svg) no-repeat top 7px left;
+    background-size: 20px;
+    padding: 5px 5px 5px 32px;
+    font-size: 17px;
+}

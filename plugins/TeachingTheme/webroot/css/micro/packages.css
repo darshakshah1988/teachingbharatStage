@@ -1,0 +1,201 @@
+
+
+/* Package styles */
+.top-130{
+    margin-top: -130px;
+    margin-bottom: 100px
+}
+.package-body-white{
+    background: #fff;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    min-height: 200px
+}
+.sticky-top{
+    position: sticky;
+    top: 70px
+}
+.package-heading{
+    border-bottom: 1px solid #e2e2e2;
+    padding: 15px;
+}
+.top-border-line{
+    border-top: 1px solid #e2e2e2;
+}
+.package-heading h3{
+    margin: 0px;
+    font-size: 20px;
+    font-weight: 700;
+
+}
+.package-heading h3 span{
+    color: #ed4426;
+}
+.pad-15-all{
+    padding: 15px;
+}
+.star-bullets{
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+.star-bullets li{
+    padding: 6px 5px 6px 30px;
+    background: url(../img/packages/star.svg) no-repeat top 6px left;
+    background-size: 22px;
+    width: 50%;
+    float: left;
+    font-size: 15px;
+    color: #000000;
+}
+.watch-video-btn, .watch-video-btn:focus{
+    display: inline-block;
+    border: 2px solid #ed4426;
+    color: #ed4426;
+    font-weight: 700;
+    padding: 10px 20px 8px 20px;
+    line-height: 1;
+    border-radius: 100px;
+    background: rgb(237 68 38 / 17%);
+}
+.watch-video-btn:hover{
+    color: #ed4426;
+    opacity: 0.7
+}
+.watch-video-btn img{
+    width: 22px;
+    margin-left: 5px;
+    margin-top: -2px
+}
+.icon-box-package{
+    text-align: center;
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgb(224 223 223 / 62%);
+    border: 1px solid #ddd;
+}
+.icon-box-package img{
+    height: 40px;
+    margin-bottom: 7px
+}
+.icon-box-package h5{
+    color: #000000;
+    margin-bottom: 0px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+.icon-box-img-bg{
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+    border-radius: 100px;
+    background: linear-gradient(45deg, #3c0667, #4c18a9)
+}
+.package-tick-list{
+    list-style: none;
+    margin-left: 20px;
+    margin-top: 15px
+}
+.package-tick-list li{
+    width: 50%;
+    float: left;
+    color: #555;
+    padding: 7px 0px;
+}
+.package-tick-list li img{
+    margin-right: 5px
+}
+.packages-teacher-box{
+    background: linear-gradient(#ed722f, #f5a337, #fcd069, #f49f32);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #d0cdca;
+    padding: 3px !important;
+    text-align: center;
+    margin-bottom: 30px
+}
+.ptb-image{
+    height: 80px;
+    width: 80px;
+    border-radius: 100px
+}
+.packages-teacher-box-inner{
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px
+}
+.packages-teacher-box-inner p{
+    margin: 2px;
+    font-size: 12px
+}
+.packages-teacher-box-inner a{
+    color: #333;
+    display: inline-block;
+    margin-top: 10px;
+    background: #e2e2e2;
+    padding: 4px 15px;
+    border-radius: 100px;
+    font-size: 12px
+}
+.packages-teacher-box-inner a:hover{
+    opacity: 0.7
+}
+.faq-panel-package .panel-default > .panel-heading{
+    color: #333;
+    background-color: #ffffff;
+    border-color: #ddd;
+    border-radius: 0px;
+    padding: 15px;
+}
+.faq-panel-package .panel-default > .panel-heading .panel-title{
+    font-weight: 400
+}
+.faq-panel-package .panel-group .panel{
+    border-radius: 0px !important
+}
+.text-xs-p{
+    font-size: 11px
+}
+.plan-selection-package{
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 7px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+.plan-selection-package:hover{
+    opacity: 0.8
+}
+.plan-selection-package table{
+    width: 100%
+}
+.plan-selection-package h4 span{
+    font-size: 12px;
+    margin-left: 15px
+}
+.plan-selection-package h5{
+    margin-bottom: 0px
+}
+.plan-selection-package h4{
+    margin-top: 0px
+}
+.plan-selection-package h5 span.discount-number{
+    font-size: 12px;
+    margin-left: 15px;
+    background: rgb(139 195 74 / 52%);
+    color: #407304;
+    padding: 2px 15px;
+    font-weight: 400;
+}
+.plan-selection-package.selected{
+    background: #d7ffd9;
+    border-color: #4caf50;
+}
+.price-cross{
+    text-decoration: line-through;
+    margin-right: 10px
+}
+.full-width-li li{
+    width: 100% !important
+}

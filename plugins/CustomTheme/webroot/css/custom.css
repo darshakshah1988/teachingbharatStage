@@ -1,0 +1,28 @@
+.jconfirm .jconfirm-box div.jconfirm-content-pane.no-scroll, .jconfirm .jconfirm-box div.jconfirm-content-pane .jconfirm-content{overflow-x: hidden !important;}
+.password-instrution{position:relative; top:-18px;}
+.cropping-top-sc{display: flex; align-items: center; justify-content: space-between; border: 1px solid #dfdfdf; margin-bottom: 20px; padding: 10px 10px;}
+.docs-preview span{font-weight: 800; display: block;}
+.docs-preview .img-preview{border: 2px solid #dfdfdf;}
+.red{ background-color: #ff0000 !important; }
+.amber{ background-color: #FFBF00 !important; }
+.green{ background-color: #08c495 !important; }
+#smartwizard .nav-tabs .nav-item{margin-right: 0;}
+#smartwizard .nav-tabs .nav-link{line-height: 82px !important; white-space: nowrap;}
+#smartwizard.sw-theme-arrows > ul.step-anchor{overflow-x: auto; overflow-y: hidden; flex-wrap: unset;}
+@media only screen and (max-width:991px){
+    .cropping-top-sc{flex-direction: column;}
+    .cropping-top-sc label{margin-top: 10px;}
+
+}
+@media only screen and (max-width:767px){
+
+}
+
+.h5heading{margin-bottom:5px; padding-bottom:0px;}
+.titleborder {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    margin-bottom: 15px;
+}
+
+.enquiries table tbody a{color: #FFF !important}
+.enquiries table tbody a:hover{color: #003994 !important}

@@ -1,0 +1,135 @@
+{#
+/**
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
+ * @since         2.0.0
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ */
+#}
+<?php
+/**
+ * @var \{{ namespace }}\View\AppView $this
+ * @var \{{ entityClass }}[]|\Cake\Collection\CollectionInterface ${{ pluralVar }}
+ */
+?>
+<?php $this->start('breadcrumb'); ?>
+<div class="content-top-sec">
+        <nav aria-label="breadcrumb">
+          <?= $this->element('breadcrumb') ?>
+        </nav>
+        <h1>
+            <?= __('Manage {{ singularHumanName }}') ?>
+        </h1>
+        <small><?php echo __('Here you can manage the {{ pluralHumanName|lower }}'); ?></small>
+</div>
+<?php $this->end(); ?>
+<div class="row {{ pluralVar }} index content">
+
+<div class="col-12 col-sm-12 col-md-12">
+                <div class="panel-default">
+                    <div class="panel-heading d-flex flex-wrap justify-content-between align-items-center">
+                        <h2><?= __('{{ singularHumanName }}') ?> List</h2>
+                        {% apply spaceless %}
+                        <div class="d-flex flex-wrap">
+                            {% set fields = Bake.filterFields(fields, schema, modelObject, indexColumns, ['binary', 'text']) %}
+                               <?= $this->Html->link("<i class=\"fa fa-plus\"></i> " . __('New {{ singularHumanName }}'), ["action" => "add"], ["class" => "btn btn-block btn-primary btn-sm btn-flat", "escape" => false]) ?>
+                               {% set done = [] %}
+                        </div>
+                        {% endapply %}
+
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                              <thead>
+                                <tr>
+                                    <th>#</th>
+{% set cols = 2 %}
+{% for field in fields %}
+{% if field not in ['id', 'modified', 'password'] %}
+                                    <th><?= $this->Paginator->sort('{{ field }}') ?></th>
+{% set cols = cols + 1 %}
+{% endif %}
+{% endfor %}                        <th class="action-col">Action</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <?php if (!empty(${{ pluralVar }}->toArray())):
+                                    $i = ((($this->Paginator->param('page') - 1) * $this->Paginator->param('perPage')) + 1);
+                                    foreach (${{ pluralVar }} as ${{ singularVar }}): ?>
+                                 <tr>
+                                    <td><?= $this->Number->format($i) ?>.</td>
+{% for field in fields %}
+{% if field not in ['id', 'modified', 'password'] %}
+{% set isKey = false %}
+{% if associations.BelongsTo is defined %}
+{% for alias, details in associations.BelongsTo %}
+{% if field == details.foreignKey %}
+{% set isKey = true %}
+                                    <td>
+                                        <?= ${{ singularVar }}->has('{{ details.property }}') ? $this->Html->link(${{ singularVar }}->{{ details.property }}->{{ details.displayField }}, ['controller' => '{{ details.controller }}', 'action' => 'view', ${{ singularVar }}->{{ details.property }}->{{ details.primaryKey[0] }}]) : '' ?>
+                                    </td>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% if isKey is not same as(true) %}
+{% set columnData = Bake.columnData(field, schema) %}
+{% if columnData.type not in ['integer', 'float', 'decimal', 'biginteger', 'smallinteger', 'tinyinteger'] %}
+{% if columnData.type in ['boolean'] %}
+                                <td>
+                                    <?php if (${{ singularVar }}->{{ field }} == 1) {
+                                            echo "Yes";
+                                        }else{
+                                            echo "No";
+                                        }
+                                    ?>
+                                </td>
+{% else %}
+{% if columnData.type in ['datetime'] %}
+                            <td>
+                             <?php if (${{ singularVar }}->{{ field }}) {
+                                echo ${{ singularVar }}->{{ field }}->format(\Cake\Core\Configure::read('Setting.ADMIN_DATE_TIME_FORMAT'));
+                                }
+                            ?>
+                            </td>
+{% else %}
+                            <td><?= h(${{ singularVar }}->{{ field }}) ?></td>
+{% endif %}
+
+{% endif %}
+
+{% else %}
+                            <td><?= $this->Number->format(${{ singularVar }}->{{ field }}) ?></td>
+{% endif %}
+{% endif %}
+    {% endif %}
+{% endfor %}
+{% set pk = '$' ~ singularVar ~ '->' ~ primaryKey[0] %}
+                    <td class="action-col">
+                <?= $this->Html->link("<i class=\"fa fa-fw fa-eye\"></i>", ['action' => 'view', {{ pk|raw }}],['class' => 'btn btn-block btn-warning btn-xs btn-flat', 'escape' => false,'data-toggle'=>'tooltip','alt'=>__('View {{ singularHumanName|lower }}'),'title'=>__('View {{ singularHumanName|lower }}')]) ?>
+
+                <?= $this->Html->link("<i class=\"fa fa-edit\"></i>", ['action' => 'add', {{ pk|raw }}], ['class' => 'btn btn-block btn-success btn-xs btn-flat', 'escape' => false,'data-toggle'=>'tooltip','alt'=>__('Edit {{ singularHumanName|lower }}'),'title'=>__('Edit {{ singularHumanName|lower }}')]) ?>
+
+                <?= $this->Html->link("<i class=\"fa fa-trash\"></i>", 'javascript:void(0)', ['class' => 'deleteWithReload btn btn-block btn-danger btn-xs btn-flat', 'data-url'=> $this->Url->build(['action' => 'delete', {{ pk|raw }}]), 'escape' => false,'data-toggle'=>'tooltip','alt'=>__('Edit {{ singularHumanName|lower }}'),'title'=>__('Delete {{ singularHumanName|lower }}')]) ?>
+                    </td>
+                </tr>
+                                <?php $i++; endforeach; ?>
+                            <?php else: ?>
+                            <tr> <td colspan='{{ cols }}' align='center' class="tbodyNotFound" style="text-align:center;"> <strong>Record Not Available</strong> </td> </tr>
+                            <?php endif; ?>
+                              </tbody>
+                            </table>
+                        </div>
+                        <div class="pagination-sec d-flex justify-content-between flex-wrap align-items-center">
+                            <?php echo $this->element('pagination'); ?>
+                        </div>
+                    </div>
+                </div>
+            </div>

@@ -1,0 +1,89 @@
+.join-audio-container__btn:focus, .send-video-container__btn:focus{
+	outline: none !important
+}
+.dropdown-menu{
+	left: 100px !important
+}
+.audio-option-menu__pop-menu > li > a{
+	padding: 5px 20px 5px 39px !important;
+}
+.audio-option-menu__pop-menu > li.dropdown-header{
+	color: #ed4426 !important
+}
+.btn-default {
+    color: #333;
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+.audio-option-menu, .sharing-setting-dropdown-menu-container {
+    float: left;
+    background-color: transparent !important;
+    padding: 14px 0px 5px 0px !important;
+}
+#wc-footer .open .dropdown-toggle.btn-default {
+    background-color: transparent !important;
+    outline: none !important;
+}
+.security-option-menu{
+	margin-top: 6px !important
+}
+.security-option-menu__pop-menu > li > a{
+	padding: 5px 20px 5px 39px !important;
+}
+button:focus, .sharing-setting-dropdown-menu-container__button:focus{
+	outline: none !important;
+	background-color: transparent !important
+}
+.more-button__pop-menu{
+	left: 0 !important
+}
+.chat-box__chat-textarea{
+	background: #e8e7e7 !important;
+	padding: 10px !important;
+	color: #222 !important;
+}
+.chat-box__chat-textarea:focus{
+	outline: none !important;
+	background: #d4d0d0 !important;
+}
+.chat-receiver-list{
+	margin-bottom: 30px !important
+}
+.chat-receiver-list__menu {
+    font-size: 12px;
+    max-width: none !important;
+    width: 100% !important;
+    border: 1px solid #ddd;
+}
+.chat-receiver-list__menu button{
+	width: 100%;
+    max-width: none;
+    box-shadow: none;
+    color: #333 !important;
+}
+.ReactVirtualized__List.chat-virtualized-list{
+	outline: none !important
+}
+.chat-header__dropdown-menu, .participants-header__dropdown-menu{
+	left: 0 !important
+}
+.chat-header__chat-pop-btn, .participants-header__participants-pop-btn{
+	outline: none !important
+	box-shadow: none !important;
+}
+.participant-scrollbar:focus{
+	outline: none !important
+}
+.participant-more-options__participant-control-more + ul{
+	left: -250px !important
+}
+.participants-section-container__participants-footer-bottom button{
+	background: #ed4426 !important;
+    width: 100% !important;
+    color: #fff !important;
+    margin: 2px !important;
+    border-radius: 0px !important;
+}
+.participants-section-container__participants-footer-bottom button:focus{
+	outline: none !important
+}

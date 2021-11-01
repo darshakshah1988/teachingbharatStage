@@ -1,0 +1,150 @@
+
+.form-control-filter{
+    width: 100%;
+    border: 1px solid #d0c9c9;
+    padding: 7px 15px;
+    box-shadow: none;
+    height: 36px
+}
+.form-control-filter:focus{
+    outline: none;
+}
+.no-price-cross{
+    text-decoration: line-through;
+}
+.micro-courses-list-banner{
+    width: 100%;
+}
+.micro-courses-box{
+    height: auto;
+    border-radius: 7px;
+    overflow: hidden;
+}
+.micro-list-title{
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    min-height: 50px;
+    line-height: 1.2
+}
+.micro-slider-box{
+    background: #fff;
+    padding: 15px;
+    box-shadow: 0px 0px 10px #ddd;
+    margin-bottom: 30px
+}
+.theme-link-a{
+    display: inline-block;
+    color: #ed4426;
+}
+.micro-link-box{
+    background: linear-gradient(45deg, #3F51B5, #673AB7);
+    color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #a09696;
+    margin-bottom: 30px
+}
+.micro-link-box h3{
+    margin-top: 0px;
+}
+.micro-link-box a, .micro-link-box a:focus{
+    display: inline-block;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 5px 26px;
+    color: #fff;
+    margin-top: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 4px
+}
+.micro-link-box a:hover{
+background: rgba(0, 0, 0, 0.4);
+}
+.physics-box{
+    background: url(../img/micro-courses/physics.png) no-repeat right 15px top 15px,linear-gradient(45deg, #3F51B5, #673AB7);
+    color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #a09696;
+    background-size: 100px, auto
+}
+.chemistry-box{
+    background: url(../img/micro-courses/chemistry.png) no-repeat right 15px top 15px,linear-gradient(45deg, #FF5722, #FF9800);
+    color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #a09696;
+    background-size: 100px, auto
+}
+.biology-box{
+    background: url(../img/micro-courses/biology.png) no-repeat right 15px top 15px,linear-gradient(45deg, #288c2c, #8BC34A);
+    color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #a09696;
+    background-size: 100px, auto
+}
+.micro-courses-info-banner{
+    background: linear-gradient(45deg, #ea910e, #FFC107);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #a09696;
+    padding: 20px !important
+}
+.micro-courses-info-banner h2{
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 5px #8a5b0b
+}
+.micro-courses-info-banner p{
+    font-size: 22px;
+    color: #fff
+}
+.micro-courses-info-banner ul{
+    list-style: none;
+    padding: 0px;
+    margin-left: 0px;
+    margin-top: 30px
+}
+.micro-courses-info-banner ul li{
+    width: 50%;
+    float: left;
+    background: url(../img/phase-3/tick.svg) no-repeat top left;
+    background-size: 25px;
+    padding-left: 35px;
+    color: #fff;
+    margin-bottom: 20px
+}
+.micro-courses-info-banner ul li h4{
+    margin-top: 0px;
+    color: #583a0c
+}
+.micro-courses-info-banner ul li h5{
+    font-weight: 400;
+    color: #6f4d13
+}
+.white-btn, .white-btn:focus{
+    display: inline-block;
+    background: #fff;
+    padding: 10px 26px;
+    border-radius: 4px;
+    color: #eb940e;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1;
+    text-decoration: none;
+    transition: 0.4s
+}
+.white-btn:hover{
+    border-radius: 100px;
+    color: #eb940e;
+    transition: 0.4s
+}
+.micro-cd{
+    margin-top: 65px;
+    box-shadow: 0px 0px 10px #ddd;
+}
+.bg-white{
+    background: #fff;
+}

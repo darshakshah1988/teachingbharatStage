@@ -1,0 +1,22 @@
+.hometab .nav-tabs > li a {
+    color: #FFF;
+	font-size:14px;
+	font-weight:bold;
+}
+.memberRegisterTab label {
+    color: #FFF;
+	}
+.hometab .nav-tabs > li.active a, .nav-tabs > li.active a:hover, .nav-tabs > li.active a:focus {
+    background-color: #0B4575;
+}
+.hometab .nav-tabs > li > a:hover{ border:none; }
+.hometab .nav-tabs > li {width:50%}
+.hometab .nav-tabs > li > a{ border:none; padding:20px 20px;}
+.hometab .nav-tabs > li.active > a, .hometab .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover{ border:none}
+.menuzord-brand {
+    margin: 5px 0px 0 0;
+	}
+.menuzord-brand img {
+    max-height: 55px;
+}
+

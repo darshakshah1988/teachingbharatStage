@@ -1,0 +1,31 @@
+ADMIN_DATE_FORMAT: 'd F, Y'
+ADMIN_DATE_TIME_FORMAT: 'd F, Y H:i A'
+ADMIN_PAGE_LIMIT: '40'
+CONTACT_EMAIL: contact@krishnadastak.com
+DEFAULT_LANGUAGE: hi
+DEVELOPMENT_MODE: '1'
+FOOTER_TEXT: Yadukul
+FROM_EMAIL: yadav.manu36@gmail.com
+FRONT_DATE_FORMAT: 'd F, Y'
+FRONT_PAGE_LIMIT: '30'
+GOOGLE_MAP_KEY: jghdadwjkdnwjknfhjbfowpjknflkwefm
+LISTING_THEME: ManuTheme
+MAIN_BANNER: 1565623517_banner4.jpg
+MAIN_FAVICON: 1565623925_logo-website.jpg
+MAIN_LOGO: 1565623910_68.jpg
+OFFICE_ADDRESS: 'Sanganer, Jaipur 303006'
+RAZORPAY_LIVE_KEY: 'no'
+RAZORPAY_LIVE_SECRET: 'no'
+RAZORPAY_MODE: '0'
+RAZORPAY_SANDBOX_KEY: rzp_test_RiL7W1l9ZFQ7ZE
+RAZORPAY_SANDBOX_SECRET: xJEuZBMKUu803yWyQJrge9tB
+SITE_TITLE: Community
+SMTP_ALLOW: '1'
+SMTP_EMAIL_HOST: smtp.gmail.com
+SMTP_PASSWORD: Manu@1989
+SMTP_PORT: '587'
+SMTP_TLS: '1'
+SMTP_USERNAME: yadav.manu36@gmail.com
+SOCIAL_LINKS: '[{"icon":"fa fa-facebook","url":"https:\/\/www.facebook.com","title":"Facebook"},{"icon":"fa fa-twitter","url":"https:\/\/twitter.com\/","title":"Twitter"},{"icon":"fa fa-instagram","url":"https:\/\/www.instagram.com\/","title":"instagram"}]'
+SYSTEM_APPLICATION_NAME: Yadukul
+TELEPHONE: '0141253652'
