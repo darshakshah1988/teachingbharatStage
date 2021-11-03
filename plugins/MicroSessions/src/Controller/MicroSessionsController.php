@@ -1,10 +1,14 @@
 <?php
 declare(strict_types=1);
 
+
 namespace MicroSessions\Controller;
 use MicroSessions\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use Cake\Mailer\MailerAwareTrait;
+use Cake\Mailer\Mailer;
 
+use Cake\Core\Configure;
 
 /**
  * MicroSessions Controller
@@ -19,8 +23,12 @@ class MicroSessionsController extends AppController
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
+     use MailerAwareTrait;
     public function index()
     {
+
+
+
        /* $query = $this->MicroSessions;
         $query->contain(['GradingTypes', 'Subjects']);
         $query->where(['MicroSessions.user_id' => $this->getRequest()->getAttribute('identity')->id]);
@@ -33,8 +41,10 @@ class MicroSessionsController extends AppController
         $user_email = @$this->getRequest()->getAttribute('identity')->email;
        //  echo $user_email;
       //   die();
-        $isSuperuser = @$this->getRequest()->getAttribute('identity')->is_superuser;
-		if($isSuperuser == 1){
+        $adminEmails = Configure::read('Setting.KEY');
+		$adminEmails = array_map('trim', explode(',',$adminEmails));
+		$isAdmin = @$this->getRequest()->getAttribute('identity')->email;
+		if(in_array($isAdmin, $adminEmails)){
               return $this->redirect(['action' => 'teacher']);
          }else{
         $user_id=$this->getRequest()->getAttribute('identity')->id;
@@ -44,12 +54,11 @@ class MicroSessionsController extends AppController
         $microSessions = $this->paginate($microSessions);
         $this->set(compact('microSessions'));
          }
-
-
     }
 
     public function teachersmicrosessions( )
     {
+
         $session = $this->request->getSession();
         $user_id=$session->read('teacher_session_id');
         $microSessions = $this->MicroSessions->find('all', [
@@ -146,6 +155,7 @@ public function getPlans($package_id=null){
       'allPlans' => $allPlans
     ]));
 }
+
     /**
      * Edit method
      *
@@ -224,6 +234,7 @@ public function getPlans($package_id=null){
                     $this->viewBuilder()->setOption('serialize', ['status', 'code','message','data', 'errors']);
     }
     public function landing($sessionID = NULL){
+
         $teacher_session_id = $sessionID;
         if(!empty($sessionID)){
             $microSessions = $this->MicroSessions->find('all', [
@@ -561,6 +572,22 @@ public function getPlans($package_id=null){
 
     }
 
+    public function getPackageSubBoardClass($subject_id = null, $board_id = null, $grading_type_id = null)
+    {
+            $allPackages = $this->MicroSessions->Packages->find('list', [
+            'keyField' => 'id',
+            'valueField' => 'package_name',
+            'conditions'=>["Packages.subject_id =".$subject_id." and Packages.board_id =".$board_id." and Packages.grading_type_id =".$grading_type_id]
+            ]);
+
+            return $this->response
+            ->withType('application/json')
+            ->withStringBody(json_encode([
+            'allPackages' => $allPackages
+            ]));
+
+    }
+
 
 
   public function getPackage($package_id = null)
@@ -888,6 +915,29 @@ public function schedulecourse($micorsession_id=null)
            //echo '<pre />';
            //print_r($orders);die;
            $this->set(compact('orders'));
+       }
+
+       function sendBookNowRequest(){
+
+           if ($this->request->is(['patch', 'post', 'put'])) {
+               $postData = $this->request->getData();
+               $this->loadModel('Users');
+               $user = $this->Users->find()->where(['Users.id' => $postData['teacher_id']])->first();
+
+                $mailer = new Mailer();
+				$mailer
+				->setEmailFormat('html')
+				->setTo($user['email'])
+				->setSubject('TeachingBharat : Book Session Request')
+				->setFrom(['admin@teachingbharat.com' => 'Teaching Bharat'])
+				->setViewVars(compact('user', 'postData'))
+				->viewBuilder()
+				->setTemplate('sendBookNowRequest');
+				$mailer->deliver();
+               echo ('Success');die;
+           }else{
+               echo('Error');die;
+           }
        }
 
 }

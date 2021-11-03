@@ -8520,7 +8520,20 @@ input.upload-answer[type=file] {
 }
 .schedule-course-header-teacher h3, .schedule-course-header-teacher .name{
     font-family: 'Roboto', sans-serif;
+    color: #000;
 }
 .schedule-course-header-teacher .name{
     font-size: 16px;
+    color: #000;
 }
+.schedule-course-header-teacher p .btn-dss{
+    margin-top: 20px;
+}
+.popupTitle{
+    text-transform: uppercase;
+    font-size: 24px;
+    color: #000;
+}
+#bookNowPopup h2{margin-top: 0px;}
+.bookoNowForm .form-control{ margin-bottom: 20px;}
+#bookoNowForm h2{margin-top: 10px;}

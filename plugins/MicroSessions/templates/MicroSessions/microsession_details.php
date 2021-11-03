@@ -14,6 +14,14 @@ $endDate= $microDetails['micro_session_chapters'][$totalchapt-1]->end_date;
 
 ?>
 <style>
+.schedule-right-action, .schedule-right-action:focus {
+    display: inline-block;
+    float: right;
+    margin-left: 15px;
+    font-size: 12px;
+    color: #ed4426;
+    margin-top: 3px;
+}
 .complete{
     display:none;
 }
@@ -148,9 +156,38 @@ $endDate= $microDetails['micro_session_chapters'][$totalchapt-1]->end_date;
 
 
 
-                                foreach ($microDetails['micro_session_chapters'] as $chap):
+                                foreach ($microDetails['micro_session_chapters'] as $loop => $chap):
 
                                     ?>
+                                    <input type="hidden" name="display_name" id="display_name_<?= $loop ?>" value="<?= $this->request->getSession()->read('Auth.User.name') ?>">
+                                   <input type="hidden" name="meeting_number" id="meeting_number_<?= $loop ?>" value="88982625484">
+                                   <input type="hidden" name="meeting_pwd" id="meeting_pwd_<?= $loop ?>" value="00752">
+                                   <input type="hidden" name="meeting_email" id="meeting_email_<?= $loop ?>" value="<?= $this->request->getSession()->read('Auth.User.email') ?>">
+
+                                   <select id="meeting_role_<?= $loop ?>" class="sdk-select" style="display: none;">
+                                       <option value=0 <?= ($this->request->getSession()->read('Auth.User.role') == 'student')?'selected':'' ?>>Attendee</option>
+                                       <option value=1 <?= ($this->request->getSession()->read('Auth.User.role') == 'teacher')?'selected':'' ?>>Host</option>
+                                       <option value=5>Assistant</option>
+                                   </select>
+                                   <select id="meeting_china_<?= $loop ?>" class="sdk-select" style="display: none;">
+                                       <option value=0 selected>Global</option>
+                                       <option value=1>China</option>
+                                   </select>
+                                   <select id="meeting_lang_<?= $loop ?>" class="sdk-select" style="display: none;">
+                                       <option value="en-US" selected>English</option>
+                                       <option value="de-DE">German Deutsch</option>
+                                       <option value="es-ES">Spanish Español</option>
+                                       <option value="fr-FR">French Français</option>
+                                       <option value="jp-JP">Japanese 日本語</option>
+                                       <option value="pt-PT">Portuguese Portuguese</option>
+                                       <option value="ru-RU">Russian Русский</option>
+                                       <option value="zh-CN">Chinese 简体中文</option>
+                                       <option value="zh-TW">Chinese 繁体中文</option>
+                                       <option value="ko-KO">Korean 한국어</option>
+                                       <option value="vi-VN">Vietnamese Tiếng Việt</option>
+                                       <option value="it-IT">Italian italiano</option>
+                                   </select>
+
                                 <div class="col-md-12 flex mb15">
                                     <div class="col-xs-2 datesche">
                                         <h3><?= date('d', strtotime($chap->start_date));?></h3>
@@ -160,8 +197,24 @@ $endDate= $microDetails['micro_session_chapters'][$totalchapt-1]->end_date;
                                     </div>
                                     <div class="col-xs-10 txtsche">
                                         <p><span></span><?= $chap->title ?></p>
-                                        <p><span>By:</span> <?= $this->Html->link($microDetails->user->first_name.' '.$microDetails->user->last_name, ['controller' => 'Users', 'action' => 'profile', 'plugin' => 'UserManager', $microDetails->user->id], ['class' => 'instru-name']) ?></a></p>
+                                        <p><span>By:</span> <?= $this->Html->link($microDetails->user->first_name.' '.$microDetails->user->last_name, ['controller' => 'Users', 'action' => 'profile', 'plugin' => 'UserManager', $microDetails->user->id], ['class' => 'instru-name']) ?></a>
+
+                                        <?php
+                                        $sessonEnd = strtotime($chap->start_date.' '.$chap->end_time);
+                                        $currentTime = time();
+                                        if($sessonEnd > $currentTime){
+                                        ?>
+                                         <a class="schedule-right-action joinSession" href="javascript:void(0)" id="joinSession" ><i class="glyphicon glyphicon-off"></i>Join Session</a>
+                                         <?php
+                                         }else{
+                                             ?>
+                                             <a class="schedule-right-action completeSession" href="javascript:void(0)" id="completeSession" ><i class="glyphicon glyphicon-off"></i>Join Session</a>
+                                             <?php
+                                         }
+                                         ?>
+                                         </p>
                                     </div>
+
                                 </div>
                                  <?php
 
@@ -212,8 +265,32 @@ $endDate= $microDetails['micro_session_chapters'][$totalchapt-1]->end_date;
         </div>
     </div>
 </div>
+<div class="modal fade" id="sessionCompletedMsg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog" role="document">
+    <div class="modal-content DModal">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Alert!</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-sm-12 Date">
+                    <p>This session has been completed.</p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <script>
+$(document).on("click", "#completeSession", function(event){
+    $('#sessionCompletedMsg').modal('show');
+});
 $(document).ready(function(){
     $(".more").toggle(function(){
     $(this).text("less..").siblings(".complete").show();
@@ -222,3 +299,32 @@ $(document).ready(function(){
 });
 });
 </script>
+<style type="text/css">
+    #zmmtg-root{
+        display:none;
+    }
+    body {
+        overflow: scroll !important;
+    }
+    a.btn-dss {
+    background: linear-gradient(
+-45deg
+, #e8023d, #ed4b26);
+    padding: 5px 15px;
+    color: #fff;
+    transition: 0.4s;
+}
+/*.Testarea .TestTable1 {
+    background: #fff;
+    border-top: 4px solid #ed4426;
+    padding: 15px;
+}*/
+</style>
+<script src="https://source.zoom.us/1.8.6/lib/vendor/react.min.js"></script>
+<script src="https://source.zoom.us/1.8.6/lib/vendor/react-dom.min.js"></script>
+<script src="https://source.zoom.us/1.8.6/lib/vendor/redux.min.js"></script>
+<script src="https://source.zoom.us/1.8.6/lib/vendor/redux-thunk.min.js"></script>
+<script src="https://source.zoom.us/1.8.6/lib/vendor/lodash.min.js"></script>
+<script src="https://source.zoom.us/zoom-meeting-1.8.6.min.js"></script>
+<?php
+echo $this->Html->script(['/js/zoom/tool','/js/zoom/vconsole.min','/js/zoom/index']);?>

@@ -10,40 +10,40 @@
         <div class="col-sm-10 col-sm-offset-1 master-detail-top-text">
             <h5><span>FREE</span> LIVE ONLINE MASTERCLASS</h5>
             <h2><?= $course->title ?></h2>
-            <?php 
+            <?php
             $allowCounter = true;
-            if($course->order_courses && !empty($course->order_courses)){ 
+            if($course->order_courses && !empty($course->order_courses)){
                 $allowCounter = false;
-             } 
+             }
              ?>
             <div class="col-sm-6 col-sm-offset-3 master-counter" style="<?= $allowCounter ? "display:none;" : "" ?>">
-			<?php 
+			<?php
 			if($course->no_of_seats > count($course->order_courses)) {
 				$leftSeats = $course->no_of_seats - count($course->order_courses);
 			?>
-                <h6>Filling fast! Last <?php echo $leftSeats ?> <?php 
+                <h6>Filling fast! Last <?php echo $leftSeats ?> <?php
 				if($leftSeats > 1) {
 					echo 'Seats';
 				} else {
 					echo 'Seat';
 				}
 				?> left.</h6>
-			<?php 
+			<?php
 			} else {
 			?>
 				<h6>Slot full. No seats left.</h6>
-			<?php 
+			<?php
 			}
 			?>
                 <h2 id="startTimeCounter"></h2>
             </div>
-            
+
         </div>
         <div class="col-sm-10 col-sm-offset-1 master-detail-top-box">
-            <?php 
+            <?php
 			$loop = 0;
                 // dump($course->user->image_path . $course->user->profile_photo);
-                 if (!empty($course->user->image_path) && !empty($course->user->profile_photo) && file_exists("img/".$course->user->image_path . $course->user->profile_photo)) { 
+                 if (!empty($course->user->image_path) && !empty($course->user->profile_photo) && file_exists("img/".$course->user->image_path . $course->user->profile_photo)) {
                     $userPhoto = $course->user->image_path . $course->user->profile_photo;
                 }else{
                     $userPhoto = 'Authors/01.jpg';
@@ -77,18 +77,18 @@
                     <div class="col-sm-4">
                         <?php
                         if($course->end_date > date('Y-m-d H:i:s') && $course->start_date<=date('Y-m-d H:i:s')){
-							
+
                         if(empty($course->order_courses)){
                              if($this->request->getAttribute('identity')){
                                 if($course->user_id != $this->getRequest()->getAttribute('identity')->id){
-                                    echo $this->Html->link('Register for Free', ['plugin' => 'Orders', 'controller' => 'Orders', 'action' => 'sessionBooking', $course->id], ['escape' => false, 'class' => 'tb-btn-md joinSession', 'data-id' => $course->id]);  
+                                    echo $this->Html->link('Register for Free', ['plugin' => 'Orders', 'controller' => 'Orders', 'action' => 'sessionBooking', $course->id], ['escape' => false, 'class' => 'tb-btn-md joinSession', 'data-id' => $course->id]);
                                 }else{
                                     //echo $this->Html->link('Join', ['plugin' => 'Courses', 'controller' => 'Courses', 'action' => 'joinSession', $course->id], ['escape' => false, 'class' => 'tb-btn-md showJoinButton', 'data-id' => $course->id]);
                                 }
-                                
+
                             }else{
-                                echo $this->Html->link('Register for Free', ['plugin' => 'Orders', 'controller' => 'Orders', 'action' => 'sessionBooking', $course->id], ['escape' => false, 'class' => 'tb-btn-md loginrequired joinSessionHide', 'data-id' => $course->id]);  
-                            }  
+                                echo $this->Html->link('Register for Free', ['plugin' => 'Orders', 'controller' => 'Orders', 'action' => 'sessionBooking', $course->id], ['escape' => false, 'class' => 'tb-btn-md loginrequired joinSessionHide', 'data-id' => $course->id]);
+                            }
                         }else if(!empty($course->meetings)){
 							?>
 							<input type="hidden" name="display_name" id="display_name_<?= $loop ?>" value="<?= $this->request->getSession()->read('Auth.User.name') ?>">
@@ -121,12 +121,12 @@
 							</select>
 							<a href="javascript:void(0)" id="joinSession" class="tb-btn-md joinSession"> Join Session</a>
 							<?php
-                             //echo $this->Html->link('Register for Free', ['plugin' => 'Orders', 'controller' => 'Orders', 'action' => 'sessionBooking', $course->id], ['escape' => false, 'class' => 'tb-btn-md loginrequired joinSessionHide', 'data-id' => $course->id]);  
+                             //echo $this->Html->link('Register for Free', ['plugin' => 'Orders', 'controller' => 'Orders', 'action' => 'sessionBooking', $course->id], ['escape' => false, 'class' => 'tb-btn-md loginrequired joinSessionHide', 'data-id' => $course->id]);
                         }
-                       // echo $this->Html->link('Join Session', ['plugin' => 'Courses', 'controller' => 'Courses', 'action' => 'joinSession', $course->id], ['escape' => false,'style' => 'display:none;', 'class' => 'tb-btn-md showJoinButton', 'data-id' => $course->id]);  
+                       // echo $this->Html->link('Join Session', ['plugin' => 'Courses', 'controller' => 'Courses', 'action' => 'joinSession', $course->id], ['escape' => false,'style' => 'display:none;', 'class' => 'tb-btn-md showJoinButton', 'data-id' => $course->id]);
                     } else {
 						if(!empty($course->order_courses)){
-							echo $this->Html->link('Already Registered ',"javascript:void(0)", ['escape' => false, 'class' => 'tb-btn-md']);	
+							echo $this->Html->link('Already Registered ',"javascript:void(0)", ['escape' => false, 'class' => 'tb-btn-md']);
 						}  else {
 							echo $this->Html->link('Join for Free', ['plugin' => 'Orders', 'controller' => 'Orders', 'action' => 'sessionBooking', $course->id], ['escape' => false, 'class' => 'tb-btn-md joinSession', 'data-id' => $course->id]);
 						}
@@ -147,11 +147,11 @@
                 if(!empty($learns)){
                  ?>
                 <ul class="master-bullets-1">
-                    <?php foreach($learns as $lrn){ 
+                    <?php foreach($learns as $lrn){
                         if(!empty(trim($lrn))){
                         ?>
                     <li><?= trim($lrn) ?></li>
-                    <?php } 
+                    <?php }
                         }
                     ?>
                 </ul>
@@ -163,9 +163,9 @@
     </div>
 </section>
 
-<?php if(!empty($interstes->toArray())){ ?> 
+<?php if(!empty($interstes->toArray())){ ?>
 <section class="master_class_bottom">
-     <div class="container"> 
+     <div class="container">
         <div class="col-sm-12">
             <h3 class="master-title-3 text-center mt0">YOU MIGHT ALSO BE INTERESTED IN</h3>
             <?php foreach ($interstes as $interste): ?>
@@ -176,9 +176,9 @@
                     <table class="mcb-details">
                         <tr>
                             <td>
-                                <?php 
+                                <?php
                                 // dump($interste->user->image_path . $interste->user->profile_photo);
-                                 if (!empty($interste->user->image_path) && !empty($interste->user->profile_photo) && file_exists("img/".$interste->user->image_path . $interste->user->profile_photo)) { 
+                                 if (!empty($interste->user->image_path) && !empty($interste->user->profile_photo) && file_exists("img/".$interste->user->image_path . $interste->user->profile_photo)) {
                                     $userPhoto = $interste->user->image_path . $interste->user->profile_photo;
                                 }else{
                                     $userPhoto = 'Authors/01.jpg';
@@ -196,23 +196,23 @@
                             </td>
                         </tr>
                     </table>
-                    <hr> 
+                    <hr>
                     <table class="master-class-box-footer">
                         <tr>
                             <td><!--<h3>642 Watching..</h3>--></td>
                             <!--<td class="text-right">
-                                <?php 
+                                <?php
                                    if(!$this->request->getAttribute('identity')){
                                     echo $this->Html->link('Join For Free <i class="glyphicon glyphicon-menu-right"></i>', 'javascript:void(0);', ['escape' => false, 'class' => 'tb-btn-md loginrequired', 'data-redirect' => $this->Url->build(['controller' => 'Courses', 'action' => 'sessionDetail', 'plugin' => 'Courses', $interste->id],['fullBase' => true])]);
                                     }else{
                                         if(empty($interste->order_courses)){
                                             echo $this->Html->link('Join For Free <i class="glyphicon glyphicon-menu-right"></i>', ['plugin' => 'Orders', 'controller' => 'Orders', 'action' => 'sessionBooking', $interste->id], ['escape' => false, 'class' => 'tb-btn-md joinSession', 'data-id' => $interste->id]);
                                         }else{
-                                            echo $this->Html->link('Join <i class="glyphicon glyphicon-menu-right"></i>', ['plugin' => 'Courses', 'controller' => 'Courses', 'action' => 'joinSession', $interste->id], ['escape' => false,'style' => '', 'class' => 'tb-btn-md', 'data-id' => $interste->id]);  
+                                            echo $this->Html->link('Join <i class="glyphicon glyphicon-menu-right"></i>', ['plugin' => 'Courses', 'controller' => 'Courses', 'action' => 'joinSession', $interste->id], ['escape' => false,'style' => '', 'class' => 'tb-btn-md', 'data-id' => $interste->id]);
                                         }
                                     }
-                                
-                                 ?> 
+
+                                 ?>
                             </td>-->
                         </tr>
                     </table>
@@ -220,7 +220,7 @@
             </div>
             <?php endforeach; ?>
         </div>
-    </div> 
+    </div>
 </section>
 <?php } ?>
 
@@ -234,9 +234,9 @@
             <div class="col-sm-6">
                 <div class="col-sm-12 master-testimonial-box">
                     <div class="col-xs-3 text-center">
-                        <?php 
+                        <?php
                             // dump($course->user->image_path . $course->user->photo);
-                             if (!empty($review->photo_path) && !empty($review->photo) && file_exists("img/".$review->photo_path . $review->photo)) { 
+                             if (!empty($review->photo_path) && !empty($review->photo) && file_exists("img/".$review->photo_path . $review->photo)) {
                                 $userPhoto = $review->photo_path . $review->photo;
                             }else{
                                 $userPhoto = 'Authors/01.jpg';
@@ -266,10 +266,10 @@ $this->Html->meta(
     'description', $course->short_description, ['block' => true]
 );
 ?>
-<?php 
+<?php
 echo $this->Html->css(['master_class.css'],['block' => true]);
-echo $this->Html->script(['/assets/plugins/jquery-loading-overlay-master/dist/loadingoverlay.min'],['block' => true]);
-echo $this->Html->script(['common', 'Courses'], ['block' => true]); 
+echo $this->Html->script(['/assets/plugins/jquery-loading-overlay-master/src/loadingoverlay'],['block' => true]);
+echo $this->Html->script(['common', 'Courses'], ['block' => true]);
 echo $this->Html->css(['/assets/plugins/countdownTimer/src/css/jQuery.countdownTimer.css'], ['block' => true]);
 echo $this->Html->script(['/assets/plugins/countdownTimer/src/js/jQuery.countdownTimer.js'], ['block' => true]);
 ?>
@@ -279,7 +279,7 @@ echo $this->Html->script(['/assets/plugins/countdownTimer/src/js/jQuery.countdow
         display:none;
     }
 	#joinSession {
-		display:block !important; 
+		display:block !important;
 	}
 	body {
 		overflow: scroll !important;
@@ -291,7 +291,7 @@ $coursesObj = new Courses();
 $(document).on("click", ".joinSession", function(event){
     event.preventDefault();
     var _this = $(this);
-    $coursesObj.joinSession({'url': _this.attr('href'), postData: {id : _this.data('id')}}); 
+    $coursesObj.joinSession({'url': _this.attr('href'), postData: {id : _this.data('id')}});
 });
 
 
@@ -312,7 +312,7 @@ function timeIsUpm() {
     //window.location.href = "<?php //echo $this->Url->build(['plugin' => 'Courses', 'controller' => 'Courses', 'action' => 'joinSession', $course->id]); ?>";
 <?php } ?>
     //console.log("join", "<?= $allowCounter?>");
-    <?php if(!$allowCounter){ ?> 
+    <?php if(!$allowCounter){ ?>
          $(".showJoinButton").show();
          $(".joinSession").hide();
          $(".joinSessionHide").hide();
@@ -326,7 +326,7 @@ function timeIsUpm() {
 $(document).on("click", ".loginrequired", function(event){
     event.preventDefault();
     var _this = $(this);
-    $.confirm({ 
+    $.confirm({
         title: '',
         columnClass: 'medium',
         content: 'You are not authorized to access that session. please login to register into session!!',
@@ -348,5 +348,5 @@ $(document).on("click", ".loginrequired", function(event){
 <script src="https://source.zoom.us/1.8.6/lib/vendor/redux-thunk.min.js"></script>
 <script src="https://source.zoom.us/1.8.6/lib/vendor/lodash.min.js"></script>
 <script src="https://source.zoom.us/zoom-meeting-1.8.6.min.js"></script>
-<?php 
+<?php
 echo $this->Html->script(['/js/zoom/tool','/js/zoom/vconsole.min','/js/zoom/index']);?>

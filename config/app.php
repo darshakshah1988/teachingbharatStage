@@ -239,7 +239,7 @@ return [
             'tls' => false,
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
         ],
-        'hanuman' => [
+        'email' => [
             'className' => 'Smtp',
             /*
              * The following keys are used in SMTP transports:
@@ -247,8 +247,8 @@ return [
             'host' => env('EMAIL_HOST', 'smtp.hostinger.in'),
             'port' => env('EMAIL_PORT', 587),
             'timeout' => 30,
-            'username' => env('EMAIL_USERNAME', 'support@yadukul.in'),
-            'password' => env('EMAIL_PASSWORD', 'Yadukul@2019'),
+            'username' => env('EMAIL_USERNAME', 'admin@teachingbharat.com'),
+            'password' => env('EMAIL_PASSWORD', 'BOYboyboy#1'),
             'client' => null,
             'tls' => env('EMAIL_TLS', null),
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
@@ -266,7 +266,7 @@ return [
      */
     'Email' => [
         'default' => [
-            'transport' => 'default',
+            'transport' => 'email',
             'from' => 'you@localhost',
             /*
              * Will by default be set to config value of App.encoding, if that exists otherwise to UTF-8.

@@ -1,3 +1,6 @@
+<?php 
+use Cake\Core\Configure;
+?>
 <li><?= $this->Html->link('Dashboard', ['controller' => 'Dashboard', 'action' => 'index', 'plugin' => 'UserManager']) ?></li>
 <?php if($this->request->getAttribute('identity')->get('role') == "student"){ ?>
 <li class="dropdown">
@@ -57,8 +60,11 @@
             <?= $this->Html->link('My Calendar', ['controller' => 'MicroSessions', 'action' => 'mycalendar', 'plugin' => 'MicroSessions']) ?>
        </li>
        <?php
-        $isSuperuser = @$this->getRequest()->getAttribute('identity')->is_superuser;
-        if($isSuperuser == 1){  ?>
+	   	$adminEmails = Configure::read('Setting.KEY');
+		$adminEmails = array_map('trim', explode(',',$adminEmails));
+        $isAdmin = @$this->getRequest()->getAttribute('identity')->email;
+        if(in_array($isAdmin, $adminEmails)){
+		  ?>
        <li>
             <?= $this->Html->link('Packages', ['controller' => 'Packages', 'action' => 'index', 'plugin' => 'MicroSessions']) ?>
        </li>

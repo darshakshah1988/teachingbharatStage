@@ -78,7 +78,7 @@ class AdminUsersController extends AppController
         $options['order'] = ['AdminUsers.id' => 'DESC'];
         $options['limit'] = \Cake\Core\Configure::read('Setting.ADMIN_PAGE_LIMIT');
         $this->paginate = $options;
-        $this->Authorization->authorize($query); 
+        $this->Authorization->authorize($query);
         $adminUsers = $this->paginate($this->Authorization->applyScope($query));
         $this->set(compact('adminUsers'));
 
@@ -170,7 +170,7 @@ class AdminUsersController extends AppController
                 if($this->Authentication->getIdentity()->id == $adminUser->id){
                     $this->Authentication->setIdentity($adminUser);
                 }
-                 
+
                 $this->Flash->success(__('The admin user has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -288,7 +288,7 @@ class AdminUsersController extends AppController
                 $_usertoken = TableRegistry::getTableLocator()->get('UserTokens')->newEmptyEntity();
                 $_usertoken->user_id = $data['id'];
                 $_usertoken->user_type = 'admin_users';
-                $_usertoken->token_type = 'forgot-password'; 
+                $_usertoken->token_type = 'forgot-password';
                 $_usertoken->token = $uid;
                 TableRegistry::getTableLocator()->get('UserTokens')->save($_usertoken);
                 $data = [

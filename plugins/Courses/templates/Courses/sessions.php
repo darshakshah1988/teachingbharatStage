@@ -32,7 +32,7 @@ if(!$this->request->getAttribute('identity')){
                         <h2>Board / Target</h2>
                         <ul class="searchbar">
                             <?php
-                            echo $this->Form->select('boards', $boards, ['multiple' => 'checkbox', 
+                            echo $this->Form->select('boards', $boards, ['multiple' => 'checkbox',
                                         'label' => ['class' => 'd-check-sm']]);
                             ?>
                         </ul>
@@ -41,7 +41,7 @@ if(!$this->request->getAttribute('identity')){
                         <h2>Grade</h2>
                         <ul class="searchbar">
                             <?php
-                                echo $this->Form->select('grading_types', $gradingTypes, ['multiple' => 'checkbox', 
+                                echo $this->Form->select('grading_types', $gradingTypes, ['multiple' => 'checkbox',
                                         'label' => ['class' => 'd-check-sm']]);
                             ?>
                         </ul>
@@ -50,7 +50,7 @@ if(!$this->request->getAttribute('identity')){
                         <h2>Subjects</h2>
                         <ul class="searchbar">
                             <?php
-                                echo $this->Form->select('subjects', $subjects, ['multiple' => 'checkbox', 
+                                echo $this->Form->select('subjects', $subjects, ['multiple' => 'checkbox',
                                         'label' => ['class' => 'd-check-sm']]);
                             ?>
                         </ul>
@@ -69,13 +69,13 @@ if(!$this->request->getAttribute('identity')){
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div role="tabpanel" id="loaderContaner" style="min-height: 250px;" class="tab-pane pad-t-20 active">
-                            
+
                         </div>
                        <!--  <div role="tabpanel" id="loaderContaner" class="tab-pane active pad-t-20" id="upcoming">
-                            
+
                         </div>
                         <div role="tabpanel" id="loaderContaner" class="tab-pane pad-t-20" id="past">
-                           
+
                         </div> -->
                     </div>
 
@@ -84,16 +84,16 @@ if(!$this->request->getAttribute('identity')){
         </div>
     </div>
 
-<?php 
+<?php
 echo $this->Html->css(['master_class.css'],['block' => true]);
-echo $this->Html->script(['/assets/plugins/jquery-loading-overlay-master/dist/loadingoverlay.min'],['block' => true]);
+echo $this->Html->script(['/assets/plugins/jquery-loading-overlay-master/src/loadingoverlay'],['block' => true]);
 echo $this->Html->script(['common', 'Courses'], ['block' => true]); ?>
 <script>
 <?php $this->Html->scriptStart(['block' => true]); ?>
 
 $('.nav-tabs a').on('shown.bs.tab', function (e) {
     if(history.pushState) {
-        history.pushState(null, null, e.target.hash); 
+        history.pushState(null, null, e.target.hash);
     } else {
         window.location.hash = e.target.hash; //Polyfill for old browsers
     }
@@ -118,12 +118,12 @@ $(document).on("keydown", "input[name='keyword']", function(e) {
         var code = e.keyCode || e.which;
         if(code == 13){
             getSessions();
-        } 
+        }
 });
 $(document).on("click", ".loginrequired", function(event){
     event.preventDefault();
     var _this = $(this);
-    $.confirm({ 
+    $.confirm({
         title: '',
         columnClass: 'medium',
         content: 'You are not authorized to access that session. please login to register into session!!',
@@ -151,7 +151,7 @@ function getSessions(){
         var defaultTab = $("ul.master_class_tab li.active a").attr("aria-controls");
         activeTab = defaultTab;
     }
-   
+
     if (history.pushState) {
            // var newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
             var newUrl = '<?= $this->Url->build(['controller' => 'Courses', 'action' => 'sessions'], ['fullBase' => true]) ?>?tab='+ activeTab + '&' + postData;
@@ -159,7 +159,7 @@ function getSessions(){
         }
        $coursesObj.getCourses({'url': '<?= $this->Url->build(['controller' => 'Courses', 'action' => 'getSessions']) ?>', postData: $("form#formElms").serialize() + "&tab="+ activeTab});
 }
- 
+
 <?php $this->Html->scriptEnd(); ?>
 </script>
 
@@ -177,5 +177,5 @@ function getSessions(){
 <script src="https://source.zoom.us/1.8.6/lib/vendor/redux-thunk.min.js"></script>
 <script src="https://source.zoom.us/1.8.6/lib/vendor/lodash.min.js"></script>
 <script src="https://source.zoom.us/zoom-meeting-1.8.6.min.js"></script>
-<?php 
+<?php
 echo $this->Html->script(['/js/zoom/tool','/js/zoom/vconsole.min','/js/zoom/index']);?>

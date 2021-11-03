@@ -81,6 +81,7 @@ return [
                 'u2fAuthenticateFinish',
                 'generatePassword',
                 'loadTeachers',
+                'sendBookNowRequest',
                 'getReviews',
                 'session'
             ],
@@ -125,7 +126,8 @@ return [
                 'session',
 				'checkMobileNumber',
 				'sendPhoneVerifyOtp',
-				'verifyOtp'
+				'verifyOtp',
+                'sendBookNowRequest'
             ],
             'bypassAuth' => true,
         ],
@@ -160,7 +162,7 @@ return [
             'prefix' => false,
             'plugin' => 'MicroSessions',
             'controller' => ['MicroSessions','MicroSessionChapters','Packages','Plans'],
-            'action' => ['landing', 'microsessionDetails', 'getCourses','package_plans','packagedetails'],
+            'action' => ['landing', 'microsessionDetails', 'getCourses','package_plans','packagedetails', 'sendBookNowRequest'],
             'bypassAuth' => true
         ]
         ,

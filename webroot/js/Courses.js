@@ -53,7 +53,7 @@ class Courses {
                         var formObj = form[0]; // You need to use standard javascript object here
                         var formData = new FormData(formObj);
                         formData.set('description', description);
-                       
+
                         $.ajax({
                             url: obj.url,
                             type: 'POST',
@@ -102,7 +102,7 @@ class Courses {
             }
         });
       }
- 
+
       getCourses = (obj) => {
             $.ajax({
                 url: obj.url,
@@ -154,16 +154,16 @@ class Courses {
                             content: '<h4>Your Free seat for the Master Class is confirmed.</h4><p>We have sent you the joining link of class on your Email and SMS. Please join the class on time.</p>',
                             buttons: {
                                   Ok: function(){
-                                    if (typeof getSessions == 'function') { 
-                                          getSessions(); 
+                                    if (typeof getSessions == 'function') {
+                                          getSessions();
                                         }else{
                                             location.reload();
                                         }
-                                      
+
                                   }
                               }
                         });
-                        
+
                         //$(".joinSession").remove();
                     }
                     else{

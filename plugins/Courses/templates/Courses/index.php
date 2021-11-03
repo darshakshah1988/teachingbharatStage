@@ -29,7 +29,7 @@
                 <div class="col-sm-3 new-c-filter">
                     <!-- <div class="col-sm-12 new-c-filter-block">
                         <h2>Courses Type</h2>
-                        <label class="d-check-sm"> 
+                        <label class="d-check-sm">
                             Standard Courses
                             <input type="checkbox" checked="checked">
                             <span class="checkmark"></span>
@@ -44,7 +44,7 @@
                         <h2>Board / Target</h2>
                         <ul class="searchbar">
                             <?php
-                            echo $this->Form->select('boards', $boards, ['multiple' => 'checkbox', 
+                            echo $this->Form->select('boards', $boards, ['multiple' => 'checkbox',
                                         'label' => ['class' => 'd-check-sm']]);
                             ?>
                         </ul>
@@ -53,7 +53,7 @@
                             <input type="checkbox" checked="checked">
                             <span class="checkmark"></span>
                         </label>
-                        <label class="d-check-sm"> 
+                        <label class="d-check-sm">
                             ICSE
                             <input type="checkbox">
                             <span class="checkmark"></span>
@@ -73,7 +73,7 @@
                         <h2>Grade</h2>
                         <ul class="searchbar">
                             <?php
-                                echo $this->Form->select('grading_types', $gradingTypes, ['multiple' => 'checkbox', 
+                                echo $this->Form->select('grading_types', $gradingTypes, ['multiple' => 'checkbox',
                                         'label' => ['class' => 'd-check-sm']]);
                             ?>
                         </ul>
@@ -164,7 +164,7 @@
                         <h2>Subjects</h2>
                         <ul class="searchbar">
                             <?php
-                                echo $this->Form->select('subjects', $subjects, ['multiple' => 'checkbox', 
+                                echo $this->Form->select('subjects', $subjects, ['multiple' => 'checkbox',
                                         'label' => ['class' => 'd-check-sm']]);
                             ?>
                         </ul>
@@ -182,7 +182,7 @@
                     </div>
                     <div class="col-sm-12" id="loaderContaner" style="min-height: 500px;">
                         <div style="text-align:center;">
-                            <strong>Record Not Available</strong>  
+                            <strong>Record Not Available</strong>
                         </div>
                     </div>
                 </div>
@@ -190,9 +190,9 @@
         </div>
     </div>
 
-<?php 
-echo $this->Html->script(['/assets/plugins/jquery-loading-overlay-master/dist/loadingoverlay.min'],['block' => true]);
-echo $this->Html->script(['common', 'Courses'], ['block' => true]); 
+<?php
+echo $this->Html->script(['/assets/plugins/jquery-loading-overlay-master/src/loadingoverlay'],['block' => true]);
+echo $this->Html->script(['common', 'Courses'], ['block' => true]);
 ?>
 <script>
 <?php $this->Html->scriptStart(['block' => true]); ?>
@@ -213,10 +213,10 @@ $(document).on("keydown", "input[name='keyword']", function(e) {
         var code = e.keyCode || e.which;
         if(code == 13){
             getCourses();
-        } 
+        }
 });
 
-    
+
 function getCourses(){
     let postData = $("form#formElms").serialize();
     if (history.pushState) {

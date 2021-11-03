@@ -1,22 +1,25 @@
 <?php
+
+use Cake\Core\Configure;
+
 /**
  * @var \App\View\AppView $this
  * @var \Cake\Datasource\EntityInterface $microSession
  */
 $session = $this->request->getSession();
 $user_id=$session->read('teacher_session_id');
-$user_email = @$this->getRequest()->getAttribute('identity')->email; 
+$user_email = @$this->getRequest()->getAttribute('identity')->email;
 
-      
+
 ?>
 
 <?php
 $this->layout = "authdefault";
-/**    
+/**
  * @var \App\View\AppView $this
  * @var \Cake\Datasource\EntityInterface $course
  */
-?> 
+?>
 
 <div class="White79">
     <div class="GreyBg">
@@ -54,7 +57,7 @@ $this->layout = "authdefault";
 
                 <div class="row nopadding">
                     <div class="col-sm-3">
-                          <?= $this->Form->checkbox('add_package', [ 'class' => 'D-checkbox', 'id' => 'add_package']); ?><label for="add_package" class="D-label">Select Package</label>                        
+                          <?= $this->Form->checkbox('add_package', [ 'class' => 'D-checkbox', 'id' => 'add_package']); ?><label for="add_package" class="D-label">Select Package</label>
                         </div>
                         <div id="show_packages" style="display:none">
                         <div class="col-sm-3">
@@ -73,9 +76,9 @@ $this->layout = "authdefault";
                         <div class="col-sm-3">
                                 <?= $this->Form->control('discount_price', ['id'=>'discount_price','class' => 'MyInput dprice', 'placeholder' => __('Discount Price e.g ₹ 9999'), 'min' => 0]) ?>
                         </div>
-                        
+
                     </div>
-                      
+
 
 </div>
  <div class="row nopadding" >
@@ -83,16 +86,18 @@ $this->layout = "authdefault";
                                 <?php echo $this->Form->control('academic_year_id', ['options' => [1 => "2021", 0 => "2022"], 'empty' => false, 'class' => 'MyInput', 'label' => __('Academic Year')]); ?>
                         </div>
 
-                        
-						<?php 
-						$isSuperuser = @$this->getRequest()->getAttribute('identity')->is_superuser;
-						if($isSuperuser == 1){
+
+						<?php
+						$adminEmails = Configure::read('Setting.KEY');
+						$adminEmails = array_map('trim', explode(',',$adminEmails));
+						$isAdmin = @$this->getRequest()->getAttribute('identity')->email;
+						if(in_array($isAdmin, $adminEmails)){
 						?>
                         <div class="col-sm-3">
                                 <?php echo $this->Form->control('status', ['options' => [1 => "Active", 0 => "Inactive"], 'empty' => false, 'class' => 'MyInput', 'label' => __('Status')]); ?>
                         </div>
                         <?php } ?>
-                    
+
                         <div class="col-sm-6">
                                 <label>Select Day&nbsp;</label>
                                 <?= $this->Form->checkbox('monday', [ 'class' => 'D-checkbox', 'id' => 'monday']); ?><label for="monday" class="D-label">M</label>
@@ -103,18 +108,18 @@ $this->layout = "authdefault";
                                 <?= $this->Form->checkbox('saturday', [ 'class' => 'D-checkbox', 'id' => 'saturday']); ?><label for="saturday" class="D-label">S</label>
                                 <?= $this->Form->checkbox('sunday', [ 'class' => 'D-checkbox', 'id' => 'sunday']); ?><label for="sunday" class="D-label">S</label>
                         </div>
-                                            
+
                     </div>
-					
-                   <div class="row nopadding">                       
-        <div class="col-lg-12 col-md-6 col-xs-1">                        
-        <?php 
+
+                   <div class="row nopadding">
+        <div class="col-lg-12 col-md-6 col-xs-1">
+        <?php
 
     //      [microsession_file] => 495999163336479122713.png
     // [microsession_file_dir] => webroot\img\uploads\MicroSessions\microsession_file\
     // [microsession_file_size] => 885397
     // [microsession_file_type] => image/png
-       
+
           $nominate_file_path = '';
 
 
@@ -122,7 +127,7 @@ $this->layout = "authdefault";
           {
 
             echo $this->Form->control('microsession_file', ['type' => 'file', 'class' => 'dropify', 'data-height' => 30, 'label' => 'Microsession Image' , 'data-default-file' => $nominate_file_path]);
-            
+
             }
             else
             {
@@ -138,18 +143,18 @@ $this->layout = "authdefault";
 
 
                         <div class="col-md-12">
-                              <?= $this->Form->control('short_description', ['type'=>'textarea','class' => 'MyInput', 'placeholder' => __('Feature'), 'label' => 'Feature *', 'id' => 'ckeditor1']) ?> 
-                           
+                              <?= $this->Form->control('short_description', ['type'=>'textarea','class' => 'MyInput', 'placeholder' => __('Feature'), 'label' => 'Feature *', 'id' => 'ckeditor1']) ?>
+
                         </div>
                          <div class="col-md-12">
-                              <?= $this->Form->control('description', ['type'=>'textarea','class' => 'MyInput', 'placeholder' => __('Description'), 'label' => 'Description *', 'id' => 'ckeditor3']) ?> 
-                           
+                              <?= $this->Form->control('description', ['type'=>'textarea','class' => 'MyInput', 'placeholder' => __('Description'), 'label' => 'Description *', 'id' => 'ckeditor3']) ?>
+
                         </div>
 
                          <div class="col-md-12">
                             <?= $this->Form->control('faq', ['type'=>'textarea','class' => 'MyInput', 'placeholder' => __('FAQ'), 'label' => 'FAQ *', 'id' => 'ckeditor2']) ?>
-                        </div> 
-                      
+                        </div>
+
                     </div>
                     <div class="col-md-12 nopadding mt50">
                         <div class="col-sm-2 col-sm-offset-3">
@@ -180,7 +185,7 @@ $this->Html->meta(
 
 ?>
 
-<?php 
+<?php
 echo $this->Html->css(['/assets/plugins/dropify-master/dist/css/dropify.min.css','https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.css
 '],['block' => true]);
 echo $this->Html->script(['/assets/plugins/dropify-master/dist/js/dropify.min.js', 'ckeditor/ckeditor.js','https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.js'],['block' => true]);
@@ -200,7 +205,7 @@ if(selectedpkg != '')
 }
 if(selectedpln != '')
 {
-    $('#show_plan').show(); 
+    $('#show_plan').show();
 }
   if($('#add_package').prop("checked") == true){
 $('#show_price').hide();
@@ -208,7 +213,7 @@ $('#show_price').hide();
 //console.log("===="+selectedpkg+selectedpln);
            // Basic
         $('#add_package').change(function() {
-            
+
         if(this.checked) {
              $('#show_packages').show();
              $('#show_price').hide();
@@ -220,49 +225,26 @@ $('#show_price').hide();
              $("#package-id").val('');
              $("#plan-id").val('');
         }
-             
+
     });
-    
+
 // regarding subject
 
-$('#subject-id').change(function() {            
-        var subject_id = this.value;
-$('#show_plan').hide();
-$("#package-id").val('');
-$("#plan-id").val('');
-        var actionUrl= window.location.protocol+"//"+window.location.host+"/micro-sessions/micro-sessions/getPackagesub/"+subject_id;
-         //console.log(actionUrl);   
-        $.ajax({
-                method: 'get',
-                url : actionUrl,
-               // data: {package_id:data},
-                success: function( response )
-                {    
-                var items =response.allPackages;
-
-                //alert(items);
-                // $('#show_plan').show();
-                $('#package-id').empty();
-                $('#package-id').append(`<option value="">Select Package</option>`);
-                $.each(items, function(key, value) {
-                  $('#package-id').append(`<option value="${key}">${value}</option>`);
-                });
-
-                }
-        });
-    });
+$('#subject-id, #board-id, #grading-type-id').change(function() {
+    getPackages();
+});
 
 
-    $('#package-id').change(function() {            
+    $('#package-id').change(function() {
         var package_id = this.value;
         var actionUrl= window.location.protocol+"//"+window.location.host+"/micro-sessions/micro-sessions/getPlans/"+package_id;
-         //console.log(actionUrl);   
+         //console.log(actionUrl);
         $.ajax({
                 method: 'get',
                 url : actionUrl,
                // data: {package_id:data},
                 success: function( response )
-                {    
+                {
                 var items =response.allPlans;
                  $('#show_plan').show();
                 $('#plan-id').empty();
@@ -281,6 +263,39 @@ $("#plan-id").val('');
     CKEDITOR.replace( 'ckeditor2' );
     CKEDITOR.replace( 'ckeditor3' );
 });
+
+
+function getPackages(){
+    var subject_id = $("#subject-id").val();
+    $('#show_plan').hide();
+    $("#package-id").val('');
+    $("#plan-id").val('');
+    var board_id = $("#board-id").val();
+    var grading_type_id = $("#grading-type-id").val();
+
+    if(subject_id> 0 && board_id > 0 && grading_type_id > 0){
+        var actionUrl= window.location.protocol+"//"+window.location.host+"/micro-sessions/micro-sessions/getPackageSubBoardClass/"+subject_id+"/"+board_id+"/"+grading_type_id;
+         //console.log(actionUrl);
+        $.ajax({
+                method: 'get',
+                url : actionUrl,
+               // data: {package_id:data},
+                success: function( response )
+                {
+                var items =response.allPackages;
+
+                //alert(items);
+                // $('#show_plan').show();
+                $('#package-id').empty();
+                $('#package-id').append(`<option value="">Select Package</option>`);
+                $.each(items, function(key, value) {
+                  $('#package-id').append(`<option value="${key}">${value}</option>`);
+                });
+
+                }
+        });
+    }
+}
 
 (function($) {
   $.fn.inputFilter = function(inputFilter) {
@@ -335,5 +350,3 @@ $('.package, .plan, .D-checkbox').change(function() {
 })
 <?php $this->Html->scriptEnd(); ?>
 </script>
-
-

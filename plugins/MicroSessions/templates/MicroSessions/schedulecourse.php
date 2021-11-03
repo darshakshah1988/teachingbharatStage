@@ -69,7 +69,7 @@ echo $this->Html->css(['/css/purchased_courses.css'],['block' => true]);
         echo $this->Html->image($userPhoto, ['class' => 'schteacher'])?>
 
                     <h4><?= $this->Html->link($userDetails->first_name.' '.$userDetails->last_name, ['action' => 'teachersession', $userDetails->id], ['class' => 'name']) ?></h4>
-
+                    <p><a href="#" data-toggle="modal" data-target="#bookNowPopup" class="btn btn-xs btn-dss">Book Now</a></p>
                 </div>
 
             </div>
@@ -88,7 +88,8 @@ echo $this->Html->css(['/css/purchased_courses.css'],['block' => true]);
             </div>
         </div>
 
-       <div class="container-fluid">
+       <div class="container">
+            <div class="row">
                 <div class="col-md-12 Testarea mt30">
                     <div class="col-md-12 ">
                         <div>
@@ -118,7 +119,7 @@ echo $this->Html->css(['/css/purchased_courses.css'],['block' => true]);
                                         <div class="col-xs-2 datesche">
                                             <h3><?= date('d', strtotime($chap->start_date));?></h3>
                                             <p><?= date('M', strtotime($chap->start_date));?></p>
-                                            <p><?= date('H:i', strtotime($chap->start_time));?> - <?= date('H:i A', strtotime($chap->end_time));?></p>
+                                            <p><?= date('h:i A', strtotime($chap->start_time));?> - <?= date('h:i A', strtotime($chap->end_time));?></p>
                                         </div>
                                         <div class="col-xs-10 txtsche">
                                             <p><span></span><?=$chap->title;?></p>
@@ -155,7 +156,20 @@ echo $this->Html->css(['/css/purchased_courses.css'],['block' => true]);
 
                                            <!--  <a class="schedule-right-action" href="#"><i class="glyphicon glyphicon-repeat"></i>Replay</a>
                                             <a class="schedule-right-action" href="#"><i class="glyphicon glyphicon-list-alt"></i>Get Notes</a></p> -->
+                                            <?php
+                                            $sessonEnd = strtotime($chap->start_date.' '.$chap->end_time);
+                                            $currentTime = time();
+                                            if($sessonEnd > $currentTime){
+                                            ?>
                                              <a class="schedule-right-action joinSession" href="javascript:void(0)" id="joinSession" ><i class="glyphicon glyphicon-off"></i>Join Session</a>
+                                             <?php
+                                             }else{
+                                                 ?>
+                                                 <a class="schedule-right-action completeSession" href="javascript:void(0)" id="completeSession" ><i class="glyphicon glyphicon-off"></i>Join Session</a>
+                                                 <?php
+                                             }
+                                             ?>
+
                                         </div>
                                     </div>
                            <?php $loop++; endforeach; ?>
@@ -213,13 +227,91 @@ echo $this->Html->css(['/css/purchased_courses.css'],['block' => true]);
 
                     </div>
                 </div>
-            </div>
 
+            </div>
+        </div>
+<?php
+$loginUserName = @$this->getRequest()->getAttribute('identity')->first_name.' '.@$this->getRequest()->getAttribute('identity')->last_name;
+$loginEmail = @$this->getRequest()->getAttribute('identity')->email;
+$loginID = @$this->getRequest()->getAttribute('identity')->id;
+?>
+<div class="modal fade" id="bookNowPopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog" role="document">
+    <div class="modal-content DModal">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Book Now</h4>
+        </div>
+        <div class="modal-body">
+            <?= $this->Form->create(null, [ 'novalidate' => true, 'id' => 'bookNowForm']); ?>
+            <?= $this->Form->hidden('teacher_id', ['value' => $userDetails->id]);  ?>
+            <?= $this->Form->hidden('user_id', ['value' => $loginID]);  ?>
+            <div class="row">
+                <div class="col-sm-12 Date">
+                    <h2><?= $this->Html->link($userDetails->first_name.' '.$userDetails->last_name, ['action' => 'teachersession', $userDetails->id], ['class' => 'name popupTitle']) ?></h2>
+                </div>
+                <div id="bookoNowForm" style="display:block;">
+                    <div class="col-sm-12 SesDetatils">
+                        <div class="col-sm-6">
+                            <h2>Name*</h2>
+                            <p><input type="text" class="form-control" name="userName" id="userName" value="<?= $loginUserName; ?>" required></p>
+                        </div>
+                        <div class="col-sm-6">
+                            <h2>Email Address*</h2>
+                            <p><input type="text" class="form-control" name="userEmailAddress" id="userEmailAddress" value="<?= $loginEmail; ?>" required></p>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <h2>Contact Number*</h2>
+                            <p><input type="text" class="form-control" name="userContactNumber" id="userContactNumber" value="" required></p>
+                        </div>
+                        <div class="col-sm-12">
+                            <h2>Message</h2>
+                            <p><textarea type="text" class="form-control" name="userMessage" id="userMessage"></textarea></p>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 action">
+                        <div class="col-sm-5">
+                            <a href="javascript:void(0);" class="red bookNowButton">SUBMIT</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?= $this->Form->end() ?>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="modal fade" id="sessionCompletedMsg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog" role="document">
+    <div class="modal-content DModal">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Alert!</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-sm-12 Date">
+                    <p>This session has been completed.</p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+</div>
 
 <?php
 echo $this->Html->css(['master_class.css'],['block' => true]);
-echo $this->Html->script(['/assets/plugins/jquery-loading-overlay-master/dist/loadingoverlay.min'],['block' => true]);
+echo $this->Html->script(['/assets/plugins/jquery-loading-overlay-master/src/loadingoverlay.min'],['block' => true]);
 echo $this->Html->script(['common', 'Courses'], ['block' => true]); ?>
+<script>
 <?php $this->Html->scriptStart(['block' => true]); ?>
 $coursesObj = new Courses();
 $(document).on("click", ".joinFree", function(event){
@@ -227,8 +319,60 @@ $(document).on("click", ".joinFree", function(event){
     var _this = $(this);
     $coursesObj.joinSession({'url': _this.attr('href'), postData: {id : _this.data('id')}});
 });
+$(document).on("click", "#completeSession", function(event){
+    $('#sessionCompletedMsg').modal('show');
+});
+var frmSubmitted = 0;
+$(document).ready(function(){
+    $('.bookNowButton').click(function(){
+        var flag = 0;
+        if(frmSubmitted == 0){
+            if($.trim($('#userName').val()) == ""){
+                alert('Please enter your name');
+                $('#userName').focus();
+                frmSubmitted = 0;
+                flag = 1; return false;
+            }
+            if($.trim($('#userEmailAddress').val()) == ""){
+                alert('Please enter your email address');
+                $('#userEmailAddress').focus();
+                frmSubmitted = 0;
+                flag = 1; return false;
+            }
+            if($.trim($('#userContactNumber').val()) == ""){
+                alert('Please enter your contact number');
+                $('#userContactNumber').focus();
+                frmSubmitted = 0;
+                flag = 1; return false;
+            }
+            if(flag == 0){
+                $(this).html('Processing...');
+                frmSubmitted = 1;
+                $.ajax({
+        			type: 'POST',
+        			url: '<?= $this->Url->build('/micro-sessions/micro-sessions/send-book-now-request')?>',
+        			data: $('#bookNowForm').serialize(),
+        			success: function(msg){
+                        if(msg == 'Success'){
+                            frmSubmitted = 0;
+                            $('#bookoNowForm').html('<div class="col-sm-12"><div class="alert alert-success">Your booking request has been sent successfully.</div></div>');
+                        }else{
+                            $('#bookoNowForm').html('<div class="col-sm-12"><div class="alert alert-danger">Some thing want to wrong, please try after sometime.</div></div>');
+                        }
+                        setTimeout(function(){location.reload();},5000);
+        			}
+        		});
+            }
+        }
+    });
+    $('#bookNowPopup').on('hidden.bs.modal', function (e) {
+        $('.bookNowButton').html('Submit');
+        frmSubmitted = 0;
+    })
+});
 <?php $this->Html->scriptEnd(); ?>
 </script>
+
 <style type="text/css">
     #zmmtg-root{
         display:none;
