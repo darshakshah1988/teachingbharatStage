@@ -132,7 +132,11 @@ $this->layout = "authdefault";
             else
             {
                 echo $this->Form->control('microsession_file', ['type' => 'file', 'class' => 'dropify', 'data-height' => 30, 'label' => 'Microsession Image' , 'data-default-file' => $nominate_file_path]);
-                echo "<img src='/".$microSession->microsession_file_dir."".$microSession->microsession_file."' width=250px height=250px style='float:left' alt='".$microSession->microsession_file."' />";
+
+                if(!empty($microSession->microsession_file_dir))
+                {
+                    echo "<img src='/".$microSession->microsession_file_dir."".$microSession->microsession_file."' width=250px height=250px style='float:left' alt='".$microSession->microsession_file."' />";
+                }
             }
 
 

@@ -12,8 +12,8 @@
                 'micro/Dstyle.css'
            ]);
             $totalchapt=count($microDetails['micro_session_chapters']);
-$startDate=$microDetails['micro_session_chapters'][0]->start_date;
-$endDate= $microDetails['micro_session_chapters'][$totalchapt-1]->end_date;
+$startDate= isset($microDetails['micro_session_chapters'][0]->start_date)?$microDetails['micro_session_chapters'][0]->start_date:'';
+$endDate= isset($microDetails['micro_session_chapters'][0]->end_date)?$microDetails['micro_session_chapters'][$totalchapt-1]->end_date:'';
 
 echo $this->Html->css(['/css/purchased_courses.css'],['block' => true]);
 
@@ -185,19 +185,18 @@ echo $this->Html->css(['/css/purchased_courses.css'],['block' => true]);
                                     <div class="col-sm-8">
                             <div class="row">
 
-                                    <p><?=$microDetails->faq;?></p>
+                                    <p><?= $microDetails->faq; ?></p>
 
                                 </div>
                             </div>
                                 </div>
                                    <div role="tabpanel" class="tab-pane" id="content">
                                     <div class="col-sm-8">
-                            <div class="row">
-
-
-
-                                </div>
-                            </div>
+                                        <div class="row">
+                                        <h4><?= $microDetails->short_description; ?></h4>
+                                        <p><?= $microDetails->description; ?></p>
+                                        </div>
+                                    </div>
                                 </div>
                                    <div role="tabpanel" class="tab-pane" id="test">
                                     <div class="col-sm-8">
