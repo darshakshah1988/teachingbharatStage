@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/ruflin/Elastica/compare/7.1.1...master)
+## [Unreleased](https://github.com/ruflin/Elastica/compare/7.1.2...master)
 ### Backward Compatibility Breaks
 ### Added
 ### Changed
@@ -12,6 +12,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 ### Fixed
 ### Security
+
+## [7.1.2](https://github.com/ruflin/Elastica/compare/7.1.1...7.1.2)
+### Backward Compatibility Breaks
+* Changed `Elastica\Exception\JSONParseException` inheritance, it now extends `\JsonException` instead of `\RuntimeException` [#1949](https://github.com/ruflin/Elastica/pull/1949)
+### Added
+* Added `Elastica\Aggregation\NormalizeAggregation` [#1956](https://github.com/ruflin/Elastica/pull/1956)
+* Added `Elastica\Suggest\Phrase::addDirectGenerator` to align with ES specification [#1964](https://github.com/ruflin/Elastica/pull/1964)
+* Added support for `psr/log` 2.0 and 3.0 [#1971](https://github.com/ruflin/Elastica/pull/1971)
+* Added new optional 'case_insensitive' option to `Elastica\Query\Wildcard` [#1894](https://github.com/ruflin/Elastica/pull/1894)
+* Added `Elastica\Result::getSort()` fetching the "sort" property of results [#1979](https://github.com/ruflin/Elastica/pull/1979)
+* Added exposure of Point-In-Time ID for search responses in `Elastica\ResultSet::getPointInTimeId()` [#1991](https://github.com/ruflin/Elastica/pull/1991)
+* Added `Elastica\Index::openPointInTime()` for opening a PiT on the index [#1994](https://github.com/ruflin/Elastica/pull/1994)
+* Added possibility to specify PointInTime on `Elastica\Query::setPointInTime()` [#1992](https://github.com/ruflin/Elastica/pull/1992)
+* Added `Elastica\Client::closePointInTime()` for closing a PiT [#1995](https://github.com/ruflin/Elastica/pull/1995)
+### Changed
+* Updated `php-cs-fixer` to `3.2.1`
+  [#1996](https://github.com/ruflin/Elastica/pull/1996)
+  [#1959](https://github.com/ruflin/Elastica/pull/1959)
+  [#1955](https://github.com/ruflin/Elastica/pull/1955)
+* Using default Elasticsearch images for testing instead of OSS https://github.com/ruflin/Elastica/pull/1954
+### Fixed
+* Fixed compatibility with `guzzlehttp/psr7` version `2.x` [#2002](https://github.com/ruflin/Elastica/pull/2002)
+* Fixed the assignment of `version`, `seq_no` and `primary_term` on `getDocument` [#1973](https://github.com/ruflin/Elastica/pull/1973)
 
 ## [7.1.1](https://github.com/ruflin/Elastica/compare/7.1.0...7.1.1)
 ### Backward Compatibility Breaks
@@ -28,6 +51,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Updated `composer-normalize` to `2.13.3` [#1927](https://github.com/ruflin/Elastica/pull/1927)
 ### Deprecated
 * Deprecated `Elastica\Transport\HttpAdapter` class [#1940](https://github.com/ruflin/Elastica/pull/1940)
+* Deprecated `Elastica\Exception\JSONParseException` exception, catch `\JsonException` instead [#1949](https://github.com/ruflin/Elastica/pull/1949)
 ### Fixed
 * Fixed wrong `ltrim` usage in guzzle transport [#1783](https://github.com/ruflin/Elastica/pull/1783)
 * Fixed `_seq_no` and `_primary_term` wrong initialization [#1920](https://github.com/ruflin/Elastica/pull/1920)
@@ -101,7 +125,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Fixed handling precision as string in `Elastica\Aggregation\GeohashGrid::setPrecision()` [#1884](https://github.com/ruflin/Elastica/pull/1884)
 * Fixed calling `Elastica\Aggregation\Composite::addAfter()` with the `null` value [1877](https://github.com/ruflin/Elastica/pull/1877)
 * Replaced `_routing` and `_retry_on_conflict` by `routing` and `retry_on_conflict` in `AbstractUpdateAction` [#1807](https://github.com/ruflin/Elastica/issues/1807)
-### Security
 
 
 ## [7.0.0](https://github.com/ruflin/Elastica/compare/7.0.0-beta.4...7.0.0)

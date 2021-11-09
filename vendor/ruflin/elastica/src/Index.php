@@ -36,6 +36,7 @@ use Elasticsearch\Endpoints\Indices\PutSettings;
 use Elasticsearch\Endpoints\Indices\Refresh;
 use Elasticsearch\Endpoints\Indices\Settings\Put;
 use Elasticsearch\Endpoints\Indices\UpdateAliases;
+use Elasticsearch\Endpoints\OpenPointInTime;
 use Elasticsearch\Endpoints\UpdateByQuery;
 
 /**
@@ -163,9 +164,9 @@ class Index implements SearchableInterface
     /**
      * Update entries in the db based on a query.
      *
-     * @param array|Query|string $query   Query object or array
-     * @param AbstractScript     $script  Script
-     * @param array              $options Optional params
+     * @param AbstractQuery|array|Collapse|Query|string|Suggest $query   Query object or array
+     * @param AbstractScript                                    $script  Script
+     * @param array                                             $options Optional params
      *
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update-by-query.html
      */
@@ -280,7 +281,7 @@ class Index implements SearchableInterface
         }
 
         $doc = new Document($id, $data, $this->getName());
-        $doc->setVersionParams($data);
+        $doc->setVersionParams($result);
 
         return $doc;
     }
@@ -306,8 +307,8 @@ class Index implements SearchableInterface
     /**
      * Deletes documents matching the given query.
      *
-     * @param AbstractQuery|array|Query|string $query   Query object or array
-     * @param array                            $options Optional params
+     * @param AbstractQuery|array|Collapse|Query|string|Suggest $query   Query object or array
+     * @param array                                             $options Optional params
      *
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete-by-query.html
      */
@@ -318,6 +319,19 @@ class Index implements SearchableInterface
         $endpoint = new DeleteByQuery();
         $endpoint->setBody(['query' => \is_array($query) ? $query : $query->toArray()]);
         $endpoint->setParams($options);
+
+        return $this->requestEndpoint($endpoint);
+    }
+
+    /**
+     * Opens a Point-in-Time on the index.
+     *
+     * @see: https://www.elastic.co/guide/en/elasticsearch/reference/current/point-in-time-api.html
+     */
+    public function openPointInTime(string $keepAlive): Response
+    {
+        $endpoint = new OpenPointInTime();
+        $endpoint->setParams(['keep_alive' => $keepAlive]);
 
         return $this->requestEndpoint($endpoint);
     }
@@ -392,11 +406,11 @@ class Index implements SearchableInterface
     {
         if (null === $options) {
             if (\func_num_args() >= 2) {
-                trigger_deprecation('ruflin/elastica', '7.1.0', 'Passing null as 2nd argument to "%s()" is deprecated, avoid passing this argument or pass an array instead. It will be removed in 8.0.', __METHOD__);
+                \trigger_deprecation('ruflin/elastica', '7.1.0', 'Passing null as 2nd argument to "%s()" is deprecated, avoid passing this argument or pass an array instead. It will be removed in 8.0.', __METHOD__);
             }
             $options = [];
         } elseif (\is_bool($options)) {
-            trigger_deprecation('ruflin/elastica', '7.1.0', 'Passing a bool as 2nd argument to "%s()" is deprecated, pass an array with the key "recreate" instead. It will be removed in 8.0.', __METHOD__);
+            \trigger_deprecation('ruflin/elastica', '7.1.0', 'Passing a bool as 2nd argument to "%s()" is deprecated, pass an array with the key "recreate" instead. It will be removed in 8.0.', __METHOD__);
             $options = ['recreate' => $options];
         } elseif (!\is_array($options)) {
             throw new \TypeError(\sprintf('Argument 2 passed to "%s()" must be of type array|bool|null, %s given.', __METHOD__, \is_object($options) ? \get_class($options) : \gettype($options)));
@@ -442,9 +456,9 @@ class Index implements SearchableInterface
     }
 
     /**
-     * @param array|Query|string $query
-     * @param array|int          $options
-     * @param BuilderInterface   $builder
+     * @param AbstractQuery|array|Collapse|Query|string|Suggest $query
+     * @param array|int                                         $options
+     * @param BuilderInterface                                  $builder
      */
     public function createSearch($query = '', $options = null, ?BuilderInterface $builder = null): Search
     {
@@ -456,13 +470,7 @@ class Index implements SearchableInterface
     }
 
     /**
-     * Searches in this index.
-     *
-     * @param array|Query|string $query   Array with all query data inside or a Elastica\Query object
-     * @param array|int          $options Limit or associative array of options (option=>value)
-     * @param string             $method  Request method, see Request's constants
-     *
-     * @see \Elastica\SearchableInterface::search
+     * {@inheritdoc}
      */
     public function search($query = '', $options = null, string $method = Request::POST): ResultSet
     {
@@ -472,12 +480,7 @@ class Index implements SearchableInterface
     }
 
     /**
-     * Counts results of query.
-     *
-     * @param array|Query|string $query  Array with all query data inside or a Elastica\Query object
-     * @param string             $method Request method, see Request's constants
-     *
-     * @see \Elastica\SearchableInterface::count
+     * {@inheritdoc}
      */
     public function count($query = '', string $method = Request::POST): int
     {

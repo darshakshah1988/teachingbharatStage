@@ -127,7 +127,8 @@ return [
 				'checkMobileNumber',
 				'sendPhoneVerifyOtp',
 				'verifyOtp',
-                'sendBookNowRequest'
+                'sendBookNowRequest',
+                'getZoomRecordings'
             ],
             'bypassAuth' => true,
         ],
@@ -162,7 +163,7 @@ return [
             'prefix' => false,
             'plugin' => 'MicroSessions',
             'controller' => ['MicroSessions','MicroSessionChapters','Packages','Plans'],
-            'action' => ['landing', 'microsessionDetails', 'getCourses','package_plans','packagedetails', 'sendBookNowRequest'],
+            'action' => ['landing', 'microsessionDetails', 'getCourses','package_plans','packagedetails', 'sendBookNowRequest','getZoomRecordings'],
             'bypassAuth' => true
         ]
         ,
@@ -188,7 +189,7 @@ return [
             'prefix' => false,
             'plugin' => 'MicroSessions',
             'controller' => ['MicroSessions','MicroSessionChapters','Packages','Plans'],
-            'action' => ['landing', 'microsessionDetails', 'getCourses','package_plans','buyNow','packagedetails','buypackage','schedulecourse','mysubscription','mycalendar','microsessionslist'],
+            'action' => ['landing', 'microsessionDetails', 'getCourses','package_plans','buyNow','packagedetails','buypackage','schedulecourse','mysubscription','mycalendar','microsessionslist','getZoomRecordings'],
             'bypassAuth' => true
         ],
         [

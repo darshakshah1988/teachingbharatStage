@@ -35,7 +35,7 @@ var testTool = {
   },
   getMeetingConfig: function (i) {
     return {
-       
+
       mn: parseInt(document.getElementById("meeting_number_"+i).value),
       name: testTool.b64EncodeUnicode(
         document.getElementById("display_name_"+i).value
@@ -243,7 +243,7 @@ var testTool = {
     var regStrChrome2 = /ipad; cpu os (\d+_\d+)/gi;
     var regStr_saf = /version\/[\d.]+/gi;
     var regStr_saf2 = /safari\/[\d.]+/gi;
-  
+
     var regStr_edg = /edg\/[\d.]+/gi;
 
     // firefox

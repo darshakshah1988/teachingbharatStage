@@ -19,8 +19,9 @@
         "ext-json": "*",
         "elasticsearch/elasticsearch": "^7.1.1",
         "nyholm/dsn": "^2.0.0",
-        "psr/log": "^1.0",
-        "symfony/deprecation-contracts": "^2.2"
+        "psr/log": "^1.0 || ^2.0 || ^3.0",
+        "symfony/deprecation-contracts": "^2.2",
+        "symfony/polyfill-php73": "^1.19"
     },
     "require-dev": {
         "aws/aws-sdk-php": "^3.155",

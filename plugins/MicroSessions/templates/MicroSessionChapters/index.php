@@ -58,12 +58,12 @@ $this->layout = "authdefault";
                                             }
                                         ?>
                                         </td>
- 
+
 
                                         <td class="action-col">
 
                                             <input type="hidden" name="display_name" id="display_name_<?= $loop ?>" value="<?= $this->request->getSession()->read('Auth.User.name') ?>">
-                                    <input type="hidden" name="meeting_number" id="meeting_number_<?= $loop ?>" value="88982625484">
+                                    <input type="hidden" name="meeting_number" id="meeting_number_<?= $loop ?>" value="<?= (!empty($courseChapter->zoom_meeting_id)?$courseChapter->zoom_meeting_id:'88982625484') ?>">
                                     <input type="hidden" name="meeting_pwd" id="meeting_pwd_<?= $loop ?>" value="000752">
                                     <input type="hidden" name="meeting_email" id="meeting_email_<?= $loop ?>" value="naveenbhola@gmail.com">
                                     <input type="hidden" name="meeting_url" id="meeting_url_0" value="https://teachingbharat.com/micro-sessions/micro-session-chapters/index/4">
@@ -97,25 +97,25 @@ $this->layout = "authdefault";
 
                                        <!--  <?= $this->Form->button("Edit Chapter", ['type' => 'button', 'class' => 'btn btn-primary', 'id' => 'addChapters','data-title' => 'Edit Chapter', 'data-url' => $this->Url->build(['action' => 'edit', $courseChapter->id,$microsession_id, '?' => ['id' => $courseChapter->id]])]) ?> -->
 
-                                        <?= $this->Html->link("Delete", ['action' => 'delete', $courseChapter->id,$microsession_id], ['class' => 'confirmDeleteBtn btn btn-danger', 'data-url'=> $this->Url->build(['action' => 'delete', $courseChapter->id,$microsession_id]), 'escape' => false,'data-toggle'=>'tooltip','alt'=>__('Delete Chapter'),'title'=>__('Delete Chapter')]) ?> 
+                                        <?= $this->Html->link("Delete", ['action' => 'delete', $courseChapter->id,$microsession_id], ['class' => 'confirmDeleteBtn btn btn-danger', 'data-url'=> $this->Url->build(['action' => 'delete', $courseChapter->id,$microsession_id]), 'escape' => false,'data-toggle'=>'tooltip','alt'=>__('Delete Chapter'),'title'=>__('Delete Chapter')]) ?>
 
 
 
-                                        </td> 
+                                        </td>
                                 </tr>
                                 <?php $i++;  $loop++; endforeach; ?>
                                 <?php else: ?>
-                                <tr> <td colspan='13' align='center' class="tbodyNotFound" style="text-align:center;"> <strong>Record Not Available</strong> </td> 
+                                <tr> <td colspan='13' align='center' class="tbodyNotFound" style="text-align:center;"> <strong>Record Not Available</strong> </td>
                                 </tr>
                                 <?php endif; ?>
                               </tbody>
                             </table>
-                    </div>                  
+                    </div>
                 </div>
         </div>
     </div>
 </div>
-<?php 
+<?php
 echo $this->Html->css(['/assets/plugins/dropify-master/dist/css/dropify.min.css','https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.css
 '],['block' => true]);
 echo $this->Html->script(['/assets/plugins/dropify-master/dist/js/dropify.min.js', 'https://cdn.ckeditor.com/4.14.0/basic/ckeditor.js','https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.js'],['block' => true]);
@@ -132,11 +132,11 @@ $(document).on("click", "#addChapters", function(event) {
         console.log($(this));
        $coursesObj.addChapters({'title': $(this).data('title'),'url': $(this).data('url'), filters: {id: <?= $courseChapter->id ?>}});
 });
-<?php $this->Html->scriptEnd(); ?> 
+<?php $this->Html->scriptEnd(); ?>
 </script>
 
 
-<?php 
+<?php
 echo $this->Html->css(['master_class.css'],['block' => true]);
 echo $this->Html->script(['/assets/plugins/jquery-loading-overlay-master/dist/loadingoverlay.min'],['block' => true]);
 echo $this->Html->script(['common', 'Courses'], ['block' => true]); ?>
@@ -163,5 +163,5 @@ $(document).on("click", ".joinFree", function(event){
 <script src="https://source.zoom.us/1.8.6/lib/vendor/redux-thunk.min.js"></script>
 <script src="https://source.zoom.us/1.8.6/lib/vendor/lodash.min.js"></script>
 <script src="https://source.zoom.us/zoom-meeting-1.8.6.min.js"></script>
-<?php 
+<?php
 echo $this->Html->script(['/js/zoom/tool','/js/zoom/vconsole.min','/js/zoom/index']);?>

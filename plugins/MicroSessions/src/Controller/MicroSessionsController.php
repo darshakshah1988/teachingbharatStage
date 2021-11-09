@@ -656,7 +656,7 @@ public function schedulecourse($micorsession_id=null)
     {
       $this->loadModel('Orders');
      if($this->getRequest()->getAttribute('identity')->role == "teacher"){
-             $query = $this->Orders->find('all')->select(['micro_sessions.id','micro_session_chapters.id','micro_session_chapters.title','micro_session_chapters.start_time','micro_session_chapters.start_date','micro_session_chapters.end_date','micro_session_chapters.end_time'])
+             $query = $this->Orders->find('all')->select(['micro_sessions.id','micro_session_chapters.id','micro_session_chapters.title','micro_session_chapters.start_time','micro_session_chapters.start_date','micro_session_chapters.end_date','micro_session_chapters.end_time', 'micro_session_chapters.zoom_url'])
         ->select($this->Orders)
             ->where("micro_sessions.user_id = '".$this->getRequest()->getAttribute('identity')->id."'")
         ->where("order_courses.micro_session_id != '' ")
@@ -685,7 +685,7 @@ public function schedulecourse($micorsession_id=null)
 
          $this->loadModel('TeacherStudentMappings');
          $packageschapter_query = $this->TeacherStudentMappings->find('all')
-        ->select(['micro_sessions.id','micro_session_chapters.id','micro_session_chapters.title','micro_session_chapters.start_time','micro_session_chapters.start_date','micro_session_chapters.end_date','micro_session_chapters.end_time' ])
+        ->select(['micro_sessions.id','micro_session_chapters.id','micro_session_chapters.title','micro_session_chapters.start_time','micro_session_chapters.start_date','micro_session_chapters.end_date','micro_session_chapters.end_time', 'micro_session_chapters.zoom_url' ])
         ->select($this->TeacherStudentMappings)
         ->where("TeacherStudentMappings.teacher_id = '".$this->getRequest()->getAttribute('identity')->id."'")
         ->join([
@@ -709,7 +709,7 @@ public function schedulecourse($micorsession_id=null)
         }else{
             $query = $this->Orders->find('all')
 
-        ->select(['micro_sessions.id','micro_session_chapters.id','micro_session_chapters.title','micro_session_chapters.start_time','micro_session_chapters.start_date','micro_session_chapters.end_date','micro_session_chapters.end_time' ])
+        ->select(['micro_sessions.id','micro_session_chapters.id','micro_session_chapters.title','micro_session_chapters.start_time','micro_session_chapters.start_date','micro_session_chapters.end_date','micro_session_chapters.end_time', 'micro_session_chapters.zoom_url' ])
         ->select($this->Orders)
         ->where("user.id = '".$this->getRequest()->getAttribute('identity')->id."'")
         ->where("order_courses.micro_session_id != '' ")
@@ -738,7 +738,7 @@ public function schedulecourse($micorsession_id=null)
 
           $this->loadModel('TeacherStudentMappings');
          $packageschapter_query = $this->TeacherStudentMappings->find('all')
-        ->select(['micro_sessions.id','micro_session_chapters.id','micro_session_chapters.title','micro_session_chapters.start_time','micro_session_chapters.start_date','micro_session_chapters.end_date','micro_session_chapters.end_time' ])
+        ->select(['micro_sessions.id','micro_session_chapters.id','micro_session_chapters.title','micro_session_chapters.start_time','micro_session_chapters.start_date','micro_session_chapters.end_date','micro_session_chapters.end_time', 'micro_session_chapters.zoom_url' ])
         ->select($this->TeacherStudentMappings)
         ->where("TeacherStudentMappings.student_id = '".$this->getRequest()->getAttribute('identity')->id."'")
         ->join([
@@ -806,7 +806,7 @@ public function schedulecourse($micorsession_id=null)
                             $dateETime = strtotime($result->start_date.' '.$result->end_time);
                             $sessionDate = date('d F, Y', $dateSTime);
                             $timing = date('h:i A', $dateSTime).' - '.date('h:i A', $dateETime);
-                            $upcomingSessions[$sessionDate][] = ['id' => $result->id, 'micro_session_id' => $result->micro_session_id, 'title' => $result->title, 'timing' => $timing, 'start_date' => $result->start_date, 'end_date' =>$result->end_date];
+                            $upcomingSessions[$sessionDate][] = ['id' => $result->id, 'micro_session_id' => $result->micro_session_id, 'title' => $result->title, 'timing' => $timing, 'start_date' => $result->start_date, 'end_date' =>$result->end_date, 'end_time' => $result->end_time, 'zoom_url' => $result->zoom_url, 'end_time' => $result->end_time, 'zoom_url' => $result->zoom_url];
                         }
                     }
                 }
@@ -824,7 +824,7 @@ public function schedulecourse($micorsession_id=null)
                         $dateETime = strtotime($result->end_date.' '.$result->end_time);
                         $sessionDate = date('d F, Y', $dateSTime);
                         $timing = date('h:i A', $dateSTime).' - '.date('h:i A', $dateETime);
-                        $upcomingSessions[$sessionDate][] = ['id' => $result->id, 'micro_session_id' => $result->micro_session_id, 'title' => $result->title, 'timing' => $timing, 'start_date' => $result->start_date, 'end_date' =>$result->end_date];
+                        $upcomingSessions[$sessionDate][] = ['id' => $result->id, 'micro_session_id' => $result->micro_session_id, 'title' => $result->title, 'timing' => $timing, 'start_date' => $result->start_date, 'end_date' =>$result->end_date, 'end_time' => $result->end_time, 'zoom_url' => $result->zoom_url];
                     }
                 }
             }

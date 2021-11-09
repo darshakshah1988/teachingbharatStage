@@ -27,6 +27,8 @@
             <h1>Upcoming Sessions</h1>
             <?php
             if(count($upcomingSessions) > 0){
+                //echo('<pre />');
+                //print_r($upcomingSessions);die;
                 foreach($upcomingSessions as $key => $upcomingSession){
                     if(count($upcomingSession) > 0){
                 ?>
@@ -34,8 +36,14 @@
                     <h2><?= $key; ?></h2>
                     <?php
                     foreach($upcomingSession as $chapters){
+                        $url = '';
+                        $endDate = strtotime($chapters['end_date'].' '.$chapters['end_time']);
+                        $currentDate = time();
+                        if(  $endDate > $currentDate && !empty($chapters['zoom_url']) ){
+                             $url = $chapters['zoom_url'];
+                        }
                     ?>
-                        <p><?= $chapters['title']; ?></p>
+                        <p><?php if(!empty($url)){ ?> <a href="<?= $url; ?>" /> <?php } ?> <?= $chapters['title']; ?> <?php if(!empty($url)){ ?></a> <?php } ?></p>
                         <h5><?= $chapters['timing']; ?></h5>
                     <?php
                     }
@@ -66,6 +74,12 @@ echo $this->Html->script(['http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jqu
             events: [
             <?php foreach($orders as $chap):
                   if($chap->micro_session_chapters['id']){
+                      $url = '';
+                      $endDate = strtotime($chap->micro_session_chapters['end_date'].' '.$chap->micro_session_chapters['end_time']);
+                      $currentDate = time();
+                      if(  $endDate > $currentDate && !empty($chap->micro_session_chapters['zoom_url']) ){
+                           $url = $chap->micro_session_chapters['zoom_url'];
+                      }
                 ?>
 
                 {
@@ -73,12 +87,20 @@ echo $this->Html->script(['http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jqu
                     title: '<?php echo date('h:i A', strtotime($chap->micro_session_chapters['start_date'].' '.$chap->micro_session_chapters['start_time'])).' - '.date('h:i A', strtotime($chap->micro_session_chapters['end_date'].' '.$chap->micro_session_chapters['end_time'])).' '.$chap->micro_session_chapters['title'] ?>',
                     start: '<?php echo date('Y-m-d', strtotime($chap->micro_session_chapters['start_date'])) ?>',
                     end: '<?php echo date('Y-m-d', strtotime($chap->micro_session_chapters['end_date'])) ?>',
+                    url:'<?php echo  $url; ?>',
                 },
                 <?php }
             endforeach;?>
 
              <?php foreach($packageschapter as $pkg_chap):
                   if($pkg_chap->micro_session_chapters['id']){
+
+                      $url = '';
+                      $endDate = strtotime($pkg_chap->micro_session_chapters['end_date'].' '.$pkg_chap->micro_session_chapters['end_time']);
+                      $currentDate = time();
+                      if(  $endDate > $currentDate && isset($pkg_chap->micro_session_chapters['zoom_url']) && !empty($pkg_chap->micro_session_chapters['zoom_url']) ){
+                           $url = $pkg_chap->micro_session_chapters['zoom_url'];
+                      }
                 ?>
 
                 {
@@ -86,6 +108,7 @@ echo $this->Html->script(['http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jqu
                     title: '<?php echo date('h:i A', strtotime($pkg_chap->micro_session_chapters['start_date'].' '.$pkg_chap->micro_session_chapters['start_time'])).' - '.date('h:i A', strtotime($pkg_chap->micro_session_chapters['end_date'].' '.$pkg_chap->micro_session_chapters['end_time'])).' '.$pkg_chap->micro_session_chapters['title'] ?>',
                     start: '<?php echo date('Y-m-d', strtotime($pkg_chap->micro_session_chapters['start_date'])) ?>',
                     end: '<?php echo date('Y-m-d', strtotime($pkg_chap->micro_session_chapters['end_date'])) ?>',
+                    url:'<?php echo  $url; ?>',
                 },
                 <?php }
             endforeach;

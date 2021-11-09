@@ -1,8 +1,9 @@
-<?php 
+<?php
 use Cake\Core\Configure;
 //dump($this->request->getAttribute('identity')->id);
 //dump($this->request->getAttribute('identity')->getOriginalData());
 ?>
+
 <nav class="<?= $this->request->getParam('controller') == "Pages" && $this->request->getParam('action') == "display" ? "navbar navbar-default" : "navbar navbar-default navbar-fixed-top" ?>">
   <div class="container" style="width: 100%">
       <div class="mynve-container">

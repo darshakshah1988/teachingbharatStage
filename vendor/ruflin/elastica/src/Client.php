@@ -8,6 +8,7 @@ use Elastica\Exception\ConnectionException;
 use Elastica\Exception\InvalidException;
 use Elastica\Script\AbstractScript;
 use Elasticsearch\Endpoints\AbstractEndpoint;
+use Elasticsearch\Endpoints\ClosePointInTime;
 use Elasticsearch\Endpoints\Indices\ForceMerge;
 use Elasticsearch\Endpoints\Indices\Refresh;
 use Elasticsearch\Endpoints\Update;
@@ -204,7 +205,7 @@ class Client
      */
     public function updateDocuments(array $docs, array $requestParams = []): ResponseSet
     {
-        if (empty($docs)) {
+        if (!$docs) {
             throw new InvalidException('Array has to consist of at least one element');
         }
 
@@ -233,7 +234,7 @@ class Client
      */
     public function addDocuments(array $docs, array $requestParams = []): ResponseSet
     {
-        if (empty($docs)) {
+        if (!$docs) {
             throw new InvalidException('Array has to consist of at least one element');
         }
 
@@ -321,7 +322,7 @@ class Client
      */
     public function deleteDocuments(array $docs, array $requestParams = []): ResponseSet
     {
-        if (empty($docs)) {
+        if (!$docs) {
             throw new InvalidException('Array has to consist of at least one element');
         }
 
@@ -434,7 +435,7 @@ class Client
      */
     public function deleteIds(array $ids, $index, $routing = false): ResponseSet
     {
-        if (empty($ids)) {
+        if (!$ids) {
             throw new InvalidException('Array has to consist of at least one id');
         }
 
@@ -478,7 +479,7 @@ class Client
      */
     public function bulk(array $params): ResponseSet
     {
-        if (empty($params)) {
+        if (!$params) {
             throw new InvalidException('Array has to consist of at least one param');
         }
 
@@ -564,6 +565,19 @@ class Client
     }
 
     /**
+     * Closes the given PointInTime.
+     *
+     * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/point-in-time-api.html#close-point-in-time-api
+     */
+    public function closePointInTime(string $pointInTimeId): Response
+    {
+        $endpoint = new ClosePointInTime();
+        $endpoint->setBody(['id' => $pointInTimeId]);
+
+        return $this->requestEndpoint($endpoint);
+    }
+
+    /**
      * Refreshes all search indices.
      *
      * @see https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-refresh.html
@@ -614,7 +628,7 @@ class Client
         }
 
         // If no connections set, create default connection
-        if (empty($connections)) {
+        if (!$connections) {
             $connections[] = Connection::create($this->_prepareConnectionParams($this->getConfig()));
         }
 

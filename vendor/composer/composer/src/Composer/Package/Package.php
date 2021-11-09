@@ -22,46 +22,71 @@ use Composer\Util\ComposerMirror;
  */
 class Package extends BasePackage
 {
+    /** @var string */
     protected $type;
+    /** @var ?string */
     protected $targetDir;
+    /** @var 'source'|'dist'|null */
     protected $installationSource;
+    /** @var ?string */
     protected $sourceType;
+    /** @var ?string */
     protected $sourceUrl;
     /** @var ?string */
     protected $sourceReference;
+    /** @var ?array<int, array{url: string, preferred: bool}> */
     protected $sourceMirrors;
+    /** @var ?string */
     protected $distType;
+    /** @var ?string */
     protected $distUrl;
     /** @var ?string */
     protected $distReference;
     /** @var ?string */
     protected $distSha1Checksum;
+    /** @var ?array<int, array{url: string, preferred: bool}> */
     protected $distMirrors;
+    /** @var string */
     protected $version;
+    /** @var string */
     protected $prettyVersion;
+    /** @var ?\DateTime */
     protected $releaseDate;
+    /** @var mixed[] */
     protected $extra = array();
+    /** @var string[] */
     protected $binaries = array();
+    /** @var bool */
     protected $dev;
+    /**
+     * @var string
+     * @phpstan-var 'stable'|'RC'|'beta'|'alpha'|'dev'
+     */
     protected $stability;
+    /** @var ?string */
     protected $notificationUrl;
 
-    /** @var Link[] */
+    /** @var array<string, Link> */
     protected $requires = array();
-    /** @var Link[] */
+    /** @var array<string, Link> */
     protected $conflicts = array();
-    /** @var Link[] */
+    /** @var array<string, Link> */
     protected $provides = array();
-    /** @var Link[] */
+    /** @var array<string, Link> */
     protected $replaces = array();
-    /** @var Link[] */
+    /** @var array<string, Link> */
     protected $devRequires = array();
+    /** @var array<string, string> */
     protected $suggests = array();
+    /** @var array{psr-0?: array<string, string|string[]>, psr-4?: array<string, string|string[]>, classmap?: list<string>, files?: list<string>} */
     protected $autoload = array();
+    /** @var array{psr-0?: array<string, string|string[]>, psr-4?: array<string, string|string[]>, classmap?: list<string>, files?: list<string>} */
     protected $devAutoload = array();
+    /** @var string[] */
     protected $includePaths = array();
+    /** @var bool */
     protected $isDefaultBranch = false;
-    /** @var array */
+    /** @var mixed[] */
     protected $transportOptions = array();
 
     /**
@@ -83,7 +108,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function isDev()
     {
@@ -92,6 +117,8 @@ class Package extends BasePackage
 
     /**
      * @param string $type
+     *
+     * @return void
      */
     public function setType($type)
     {
@@ -99,7 +126,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getType()
     {
@@ -107,7 +134,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getStability()
     {
@@ -116,6 +143,8 @@ class Package extends BasePackage
 
     /**
      * @param string $targetDir
+     *
+     * @return void
      */
     public function setTargetDir($targetDir)
     {
@@ -123,7 +152,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getTargetDir()
     {
@@ -135,7 +164,9 @@ class Package extends BasePackage
     }
 
     /**
-     * @param array $extra
+     * @param mixed[] $extra
+     *
+     * @return void
      */
     public function setExtra(array $extra)
     {
@@ -143,7 +174,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getExtra()
     {
@@ -151,7 +182,9 @@ class Package extends BasePackage
     }
 
     /**
-     * @param array $binaries
+     * @param string[] $binaries
+     *
+     * @return void
      */
     public function setBinaries(array $binaries)
     {
@@ -159,7 +192,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getBinaries()
     {
@@ -167,7 +200,9 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
+     *
+     * @return void
      */
     public function setInstallationSource($type)
     {
@@ -175,7 +210,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getInstallationSource()
     {
@@ -184,6 +219,8 @@ class Package extends BasePackage
 
     /**
      * @param string $type
+     *
+     * @return void
      */
     public function setSourceType($type)
     {
@@ -191,7 +228,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getSourceType()
     {
@@ -200,6 +237,8 @@ class Package extends BasePackage
 
     /**
      * @param string $url
+     *
+     * @return void
      */
     public function setSourceUrl($url)
     {
@@ -207,7 +246,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getSourceUrl()
     {
@@ -216,6 +255,8 @@ class Package extends BasePackage
 
     /**
      * @param string $reference
+     *
+     * @return void
      */
     public function setSourceReference($reference)
     {
@@ -223,7 +264,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getSourceReference()
     {
@@ -231,7 +272,9 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
+     *
+     * @return void
      */
     public function setSourceMirrors($mirrors)
     {
@@ -239,7 +282,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getSourceMirrors()
     {
@@ -247,7 +290,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getSourceUrls()
     {
@@ -256,6 +299,8 @@ class Package extends BasePackage
 
     /**
      * @param string $type
+     *
+     * @return void
      */
     public function setDistType($type)
     {
@@ -263,7 +308,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getDistType()
     {
@@ -272,6 +317,8 @@ class Package extends BasePackage
 
     /**
      * @param string $url
+     *
+     * @return void
      */
     public function setDistUrl($url)
     {
@@ -279,7 +326,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getDistUrl()
     {
@@ -288,6 +335,8 @@ class Package extends BasePackage
 
     /**
      * @param string $reference
+     *
+     * @return void
      */
     public function setDistReference($reference)
     {
@@ -295,7 +344,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getDistReference()
     {
@@ -304,6 +353,8 @@ class Package extends BasePackage
 
     /**
      * @param string $sha1checksum
+     *
+     * @return void
      */
     public function setDistSha1Checksum($sha1checksum)
     {
@@ -311,7 +362,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getDistSha1Checksum()
     {
@@ -319,7 +370,9 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
+     *
+     * @return void
      */
     public function setDistMirrors($mirrors)
     {
@@ -327,7 +380,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getDistMirrors()
     {
@@ -335,7 +388,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getDistUrls()
     {
@@ -343,7 +396,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getTransportOptions()
     {
@@ -351,7 +404,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function setTransportOptions(array $options)
     {
@@ -359,7 +412,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getVersion()
     {
@@ -367,7 +420,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getPrettyVersion()
     {
@@ -378,6 +431,8 @@ class Package extends BasePackage
      * Set the releaseDate
      *
      * @param \DateTime $releaseDate
+     *
+     * @return void
      */
     public function setReleaseDate(\DateTime $releaseDate)
     {
@@ -385,7 +440,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getReleaseDate()
     {
@@ -395,7 +450,9 @@ class Package extends BasePackage
     /**
      * Set the required packages
      *
-     * @param Link[] $requires A set of package links
+     * @param array<string, Link> $requires A set of package links
+     *
+     * @return void
      */
     public function setRequires(array $requires)
     {
@@ -403,7 +460,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getRequires()
     {
@@ -413,7 +470,9 @@ class Package extends BasePackage
     /**
      * Set the conflicting packages
      *
-     * @param Link[] $conflicts A set of package links
+     * @param array<string, Link> $conflicts A set of package links
+     *
+     * @return void
      */
     public function setConflicts(array $conflicts)
     {
@@ -421,7 +480,8 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
+     * @return array<string, Link>
      */
     public function getConflicts()
     {
@@ -431,7 +491,9 @@ class Package extends BasePackage
     /**
      * Set the provided virtual packages
      *
-     * @param Link[] $provides A set of package links
+     * @param array<string, Link> $provides A set of package links
+     *
+     * @return void
      */
     public function setProvides(array $provides)
     {
@@ -439,7 +501,8 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
+     * @return array<string, Link>
      */
     public function getProvides()
     {
@@ -449,7 +512,9 @@ class Package extends BasePackage
     /**
      * Set the packages this one replaces
      *
-     * @param Link[] $replaces A set of package links
+     * @param array<string, Link> $replaces A set of package links
+     *
+     * @return void
      */
     public function setReplaces(array $replaces)
     {
@@ -457,7 +522,8 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
+     * @return array<string, Link>
      */
     public function getReplaces()
     {
@@ -467,7 +533,9 @@ class Package extends BasePackage
     /**
      * Set the recommended packages
      *
-     * @param Link[] $devRequires A set of package links
+     * @param array<string, Link> $devRequires A set of package links
+     *
+     * @return void
      */
     public function setDevRequires(array $devRequires)
     {
@@ -475,7 +543,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getDevRequires()
     {
@@ -485,7 +553,9 @@ class Package extends BasePackage
     /**
      * Set the suggested packages
      *
-     * @param array $suggests A set of package names/comments
+     * @param array<string, string> $suggests A set of package names/comments
+     *
+     * @return void
      */
     public function setSuggests(array $suggests)
     {
@@ -493,7 +563,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getSuggests()
     {
@@ -504,6 +574,10 @@ class Package extends BasePackage
      * Set the autoload mapping
      *
      * @param array $autoload Mapping of autoloading rules
+     *
+     * @return void
+     *
+     * @phpstan-param array{psr-0?: array<string, string|string[]>, psr-4?: array<string, string|string[]>, classmap?: list<string>, files?: list<string>} $autoload
      */
     public function setAutoload(array $autoload)
     {
@@ -511,7 +585,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getAutoload()
     {
@@ -522,6 +596,10 @@ class Package extends BasePackage
      * Set the dev autoload mapping
      *
      * @param array $devAutoload Mapping of dev autoloading rules
+     *
+     * @return void
+     *
+     * @phpstan-param array{psr-0?: array<string, string|string[]>, psr-4?: array<string, string|string[]>, classmap?: list<string>, files?: list<string>} $devAutoload
      */
     public function setDevAutoload(array $devAutoload)
     {
@@ -529,7 +607,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getDevAutoload()
     {
@@ -539,7 +617,9 @@ class Package extends BasePackage
     /**
      * Sets the list of paths added to PHP's include path.
      *
-     * @param array $includePaths List of directories.
+     * @param string[] $includePaths List of directories.
+     *
+     * @return void
      */
     public function setIncludePaths(array $includePaths)
     {
@@ -547,7 +627,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getIncludePaths()
     {
@@ -558,6 +638,8 @@ class Package extends BasePackage
      * Sets the notification URL
      *
      * @param string $notificationUrl
+     *
+     * @return void
      */
     public function setNotificationUrl($notificationUrl)
     {
@@ -565,7 +647,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function getNotificationUrl()
     {
@@ -574,6 +656,8 @@ class Package extends BasePackage
 
     /**
      * @param bool $defaultBranch
+     *
+     * @return void
      */
     public function setIsDefaultBranch($defaultBranch)
     {
@@ -581,7 +665,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function isDefaultBranch()
     {
@@ -589,7 +673,7 @@ class Package extends BasePackage
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function setSourceDistReferences($reference)
     {
@@ -614,6 +698,8 @@ class Package extends BasePackage
      *
      * @param string $version       The package's normalized version
      * @param string $prettyVersion The package's non-normalized version
+     *
+     * @return void
      */
     public function replaceVersion($version, $prettyVersion)
     {
@@ -624,6 +710,17 @@ class Package extends BasePackage
         $this->dev = $this->stability === 'dev';
     }
 
+    /**
+     * @param string|null  $url
+     * @param mixed[]|null $mirrors
+     * @param string|null  $ref
+     * @param string|null  $type
+     * @param string       $urlType
+     *
+     * @return string[]
+     *
+     * @phpstan-param list<array{url: string, preferred: bool}>|null $mirrors
+     */
     protected function getUrls($url, $mirrors, $ref, $type, $urlType)
     {
         if (!$url) {

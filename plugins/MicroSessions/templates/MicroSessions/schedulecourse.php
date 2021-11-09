@@ -125,7 +125,7 @@ echo $this->Html->css(['/css/purchased_courses.css'],['block' => true]);
                                         <p><span></span><?=$chap->title;?></p>
                                         <p><span>By:</span> <a href="#" class="theme-link-a">Teacher Name</a>
                                             <input type="hidden" name="display_name" id="display_name_<?= $loop ?>" value="<?= $this->request->getSession()->read('Auth.User.name') ?>">
-                                            <input type="hidden" name="meeting_number" id="meeting_number_<?= $loop ?>" value="88982625484">
+                                            <input type="hidden" name="meeting_number" id="meeting_number_<?= $loop ?>" value="<?= (!empty($chap->zoom_meeting_id)?$chap->zoom_meeting_id:'88982625484') ?>">
                                             <input type="hidden" name="meeting_pwd" id="meeting_pwd_<?= $loop ?>" value="00752">
                                             <input type="hidden" name="meeting_email" id="meeting_email_<?= $loop ?>" value="<?= $this->request->getSession()->read('Auth.User.email') ?>">
 
@@ -156,6 +156,7 @@ echo $this->Html->css(['/css/purchased_courses.css'],['block' => true]);
 
                                             <!--  <a class="schedule-right-action" href="#"><i class="glyphicon glyphicon-repeat"></i>Replay</a>
                                             <a class="schedule-right-action" href="#"><i class="glyphicon glyphicon-list-alt"></i>Get Notes</a></p> -->
+
                                             <?php
                                             $sessonEnd = strtotime($chap->start_date.' '.$chap->end_time);
                                             $currentTime = time();
@@ -164,11 +165,16 @@ echo $this->Html->css(['/css/purchased_courses.css'],['block' => true]);
                                                 <a class="schedule-right-action joinSession" href="javascript:void(0)" id="joinSession" ><i class="glyphicon glyphicon-off"></i>Join Session</a>
                                                 <?php
                                             }else{
+                                                $meetingID = !empty($chap->zoom_meeting_id)?$chap->zoom_meeting_id:'88982625484';
                                                 ?>
+                                                <a class="schedule-right-action text-success" href="javascript:void(0)" onclick="viewRecording('<?= $meetingID; ?>')" ><i class="glyphicon glyphicon-eye-open"></i>View Session</a>
+
                                                 <a class="schedule-right-action completeSession" href="javascript:void(0)" id="completeSession" ><i class="glyphicon glyphicon-off"></i>Join Session</a>
                                                 <?php
                                             }
                                             ?>
+
+
 
                                         </div>
                                     </div>
@@ -326,7 +332,7 @@ $loginID = @$this->getRequest()->getAttribute('identity')->id;
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-12 Date">
-                        <p>This session has been completed.</p>
+                        <p id="popupMessge">This session has been completed.</p>
                     </div>
                 </div>
             </div>
@@ -337,10 +343,28 @@ $loginID = @$this->getRequest()->getAttribute('identity')->id;
     </div>
 </div>
 
+<div class="modal fade" id="playVideoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content DModal" style="height: 400px; width: 700px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12 Date">
+                        <iframe id="iframeModalWindow" height="300px" width="100%" src="" name="iframe_modal" style="border:1px solid #DDD;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php
 echo $this->Html->css(['master_class.css'],['block' => true]);
 echo $this->Html->script(['/assets/plugins/jquery-loading-overlay-master/src/loadingoverlay.min'],['block' => true]);
 echo $this->Html->script(['common', 'Courses'], ['block' => true]); ?>
+
 <script>
 <?php $this->Html->scriptStart(['block' => true]); ?>
 $coursesObj = new Courses();
@@ -350,10 +374,44 @@ $(document).on("click", ".joinFree", function(event){
     $coursesObj.joinSession({'url': _this.attr('href'), postData: {id : _this.data('id')}});
 });
 $(document).on("click", "#completeSession", function(event){
+    $('#popupMessge').html('This session has been completed.');
     $('#sessionCompletedMsg').modal('show');
 });
+
+function viewRecording(meetingID){
+    if(meetingID != ''){
+        $('#popupMessge').html('Loading...');
+        $('#sessionCompletedMsg').modal('show');
+        $.ajax({
+            type: 'GET',
+            url: '<?= $this->Url->build('/micro-sessions/micro-session-chapters/getZoomRecordings/')?>'+meetingID,
+            success: function(msg){
+                if(msg != 'fileNotAvailable'){
+                    $('#popupMessge').html('');
+                    $('#sessionCompletedMsg').modal('hide');
+                    $('#playVideoModal').modal('show');
+                    $('#iframeModalWindow').attr('src', msg);
+                }else{
+                    $('#popupMessge').html('Recording not available.');
+                    $('#sessionCompletedMsg').modal('show');
+                    return false;
+                }
+            }
+        });
+    }else{
+        $('#popupMessge').html('Recording not available.');
+        $('#sessionCompletedMsg').modal('show');
+        return false;
+    }
+
+}
 var frmSubmitted = 0;
 $(document).ready(function(){
+
+    $('#playVideoModal').on('hidden.bs.modal', function(){
+        $('#iframeModalWindow').html("").attr("src", "");
+    });
+
     $('.bookNowButton').click(function(){
         var flag = 0;
         if(frmSubmitted == 0){

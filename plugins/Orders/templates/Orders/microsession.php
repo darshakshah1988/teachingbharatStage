@@ -139,7 +139,7 @@ $this->layout = "authdefault";
                             <?php } ?>
 
                             <?php if($this->request->getAttribute('identity')->role == "teacher"){ ?>
-                                
+
                                 <?= $this->Html->link("<i class=\"fa fa-fw fa-eye\"></i>", ['action' => 'view', $order->id],['class' => 'btn btn-warning btn-xs btn-flat', 'escape' => false,'data-toggle'=>'tooltip','alt'=>__('View order'),'title'=>__('View order')]) ?>
                             <?php } ?>
 

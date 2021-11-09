@@ -1,17 +1,19 @@
 ADMIN_DATE_FORMAT: 'd F, Y'
 ADMIN_DATE_TIME_FORMAT: 'd F, Y H:i A'
-ADMIN_EMAIL: yadav.manu36@gmail.com
-ADMIN_LOGO: 1604424576_1600966360_Screenshot_2020-09-24_About_Teaching_Bharat.png
+ADMIN_EMAIL: admin@teachingbharat.com
+ADMIN_LOGO: 1627566860_logo.png
 ADMIN_PAGE_LIMIT: '20'
 CONTACT_TEXT: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est.'
-EMAIL_BANNER_IMAGE: 1604424581_1601209947_banner.png
-MAIN_FAVICON: 1604424568_1600697607_LogoIcon.png
-MAIN_LOGO: 1604424562_1600697578_logo.png
-OFFICE_ADDRESS: "B-42, Gayetri Nager,\r\nsanganer jaipur,\r\n302020, India"
+EMAIL_BANNER_IMAGE: 1627556722_1626975409_tb_logo.png
+EMAIL_FROM: support@yadukul.in
+KEY: 'ananthikarm2010@gmail.com, naveenbhola@gmail.com'
+MAIN_FAVICON: 1627566867_fav.png
+MAIN_LOGO: 1628176017_logo.png
+OFFICE_ADDRESS: "A-12, Fateh Nagar,\r\nAmbala,\r\nPunjab-110087"
 PAGE_LIMIT: '25'
 RAZORPAY_MODE: '0'
-RAZORPAY_SANDBOX_KEY: rzp_test_6bncqTk7Ig2CqW
-RAZORPAY_SANDBOX_SECRET: U30wY6OWc8TEOWmYAmze01em
+RAZORPAY_SANDBOX_KEY: rzp_test_rwLiFRGKQuo2pj
+RAZORPAY_SANDBOX_SECRET: ftHht5HEdLFcDKG2wOMvTds3
 SITE_TITLE: 'Teaching Bharat'
 SYSTEM_APPLICATION_NAME: 'Teaching Bharat'
 TELEPHONE: '1800 133 432'

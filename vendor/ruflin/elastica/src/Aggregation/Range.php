@@ -16,9 +16,9 @@ class Range extends AbstractSimpleAggregation
     /**
      * Add a range to this aggregation.
      *
-     * @param float|int $fromValue low end of this range, exclusive (greater than or equal to)
-     * @param float|int $toValue   high end of this range, exclusive (less than)
-     * @param string    $key       customized key value
+     * @param float|int|string|null $fromValue low end of this range, exclusive (greater than or equal to)
+     * @param float|int|string|null $toValue   high end of this range, exclusive (less than)
+     * @param string|null           $key       customized key value
      *
      * @throws InvalidException
      *
@@ -54,7 +54,7 @@ class Range extends AbstractSimpleAggregation
      */
     public function setKeyedResponse(bool $keyed = true): self
     {
-        trigger_deprecation('ruflin/elastica', '7.1.0', 'The "%s()" method is deprecated, use "setKeyed()" instead. It will be removed in 8.0.', __METHOD__);
+        \trigger_deprecation('ruflin/elastica', '7.1.0', 'The "%s()" method is deprecated, use "setKeyed()" instead. It will be removed in 8.0.', __METHOD__);
 
         return $this->setKeyed($keyed);
     }

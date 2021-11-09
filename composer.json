@@ -28,7 +28,8 @@
         "mpdf/mpdf": "^8.0",
         "muffin/slug": "^2.0",
         "razorpay/razorpay": "2.*",
-        "symfony/yaml": "^5.1"
+        "symfony/yaml": "^5.1",
+        "firebase/php-jwt": "^5.2"
     },
     "require-dev": {
         "cakephp/bake": "^2.0.3",
@@ -73,7 +74,7 @@
             "Reviews\\": "plugins/Reviews/src/",
             "Promotions\\": "plugins/Promotions/src/",
             "Sessions\\": "plugins/Sessions/src/",
-            "MicroSessions\\": "plugins/MicroSessions/src/" 
+            "MicroSessions\\": "plugins/MicroSessions/src/"
         }
     },
     "autoload-dev": {
