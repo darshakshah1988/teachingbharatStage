@@ -1,4 +1,4 @@
-<?php 
+<?php
 use Cake\Core\Configure;
 ?>
 <li><?= $this->Html->link('Dashboard', ['controller' => 'Dashboard', 'action' => 'index', 'plugin' => 'UserManager']) ?></li>
@@ -43,9 +43,6 @@ use Cake\Core\Configure;
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
         My Content
     </a>
-    <?php
-    if($this->request->getParam('action') != 'profile'){ echo $this->element('sessionsmenu'); }
-    ?>
     <ul class="dropdown-menu">
        <li>
             <?= $this->Html->link('My Courses', ['controller' => 'Courses', 'action' => 'MyCourses', 'plugin' => 'Courses']) ?>
@@ -69,24 +66,13 @@ use Cake\Core\Configure;
             <?= $this->Html->link('Packages', ['controller' => 'Packages', 'action' => 'index', 'plugin' => 'MicroSessions']) ?>
        </li>
        <?php } ?>
-
-
     </ul>
 </li>
 
+<?php
+if($this->request->getParam('action') != 'profile'){ echo $this->element('sessionsmenu'); }
+?>
 
-<!-- <li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-        My Package
-    </a>
-    <ul class="dropdown-menu">
-       <li><a href="#">Board</a></li>
-        <li><a href="#">Grade</a></li>
-        <li><a href="#">Subject</a></li>
-        <li><a href="#">Package</a></li>
-
-    </ul>
-</li> -->
 <?php } ?>
 <li><?= $this->Html->link('My Sessions', ['controller' => 'SessionBookings', 'action' => 'index', 'plugin' => 'Sessions']) ?></li>
 <li><a href="#">My Subscriptions</a></li>
